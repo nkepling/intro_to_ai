@@ -1,0 +1,128 @@
+<mxfile host="Electron" modified="2024-01-25T19:49:42.826Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="r0PGD1iNi4YR1oh3aCKv" version="22.1.21" type="device">
+  <diagram name="Page-1" id="MNjZ9ruz_oHp4XmPr900">
+    <mxGraphModel dx="1355" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-29" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="175" width="480" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-1" value="Read_CSV():&lt;br&gt;netrworkx..." style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-2" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="130" as="sourcePoint" />
+            <mxPoint x="180" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-3" value="input csv&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="95" y="88" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-6" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="100" relative="1" as="geometry">
+            <mxPoint x="310" y="129.5" as="sourcePoint" />
+            <mxPoint x="400" y="130" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-5" value="Graph: Adejecy list" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="310" y="103" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-7" value="&lt;em&gt;location_preference_assignments (a, b)&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;/em&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="100" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-8" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="133" as="sourcePoint" />
+            <mxPoint x="880" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-9" value="augmented graph with assignments" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="770" y="103" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-10" value="&lt;em&gt;edge_preference_assignments (a, b)&lt;/em&gt; " style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="220" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-11" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="54OUwmeHTkZrK2ZW74vX-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="250" as="sourcePoint" />
+            <mxPoint x="60" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-13" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="355" y="260" as="sourcePoint" />
+            <mxPoint x="480" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-14" value="weighted graph" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="235" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-15" value="&lt;em&gt;total_preference (roadtrip)&lt;/em&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="198" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-19" value="&lt;em&gt;time_estimate (roadtrip, x)&lt;/em&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="265" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-20" value="&lt;p style=&quot;padding-left: 30px&quot;&gt;RoundTripRoadTrip (startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile)&lt;/p&gt;&lt;br/&gt;&lt;p&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="10" width="880" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-21" value="test()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="115" y="490" width="850" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-22" value="Note: Utility function -&amp;gt; maximize preference within time contraint.&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="350" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-23" value="do_search():&lt;br&gt;-&amp;gt; utiltiy function logic&lt;br&gt;-&amp;gt; travesres graph for paths" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="630" y="260" as="sourcePoint" />
+            <mxPoint x="740" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-25" value="Final road trip" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="630" y="228" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-26" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="30" y="520" as="sourcePoint" />
+            <mxPoint x="100" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-28" value="Final road trip" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="15" y="490" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-30" value="Repeat at least 3 times then ask user for break" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="485" y="175" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-31" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="263" as="sourcePoint" />
+            <mxPoint x="1090" y="263" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-33" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="855" y="225" as="sourcePoint" />
+            <mxPoint x="910" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-34" value="(min,max,ave)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="865" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-36" value="(min,max,ave)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="865" y="270" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-38" value="All paths : List []&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="965" y="228" width="105" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="54OUwmeHTkZrK2ZW74vX-39" value="Assignments:&lt;br&gt;Nate: Search()&lt;br&gt;Mo: edge&lt;br&gt;Theo: Read_CSV(), loc_prefrences&lt;br&gt;Raj: Search()" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="310" width="360" height="160" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

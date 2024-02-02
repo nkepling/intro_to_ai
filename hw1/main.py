@@ -35,12 +35,41 @@ def edge_preference_assignments(a, b):
 
 # assigns random values between a=0 and b=1 inclusive using a uniform distribution to each location independently
 def location_preference_assignments(a, b):
-    pass
+    # Predefined list of locations
+    locations = ['Location1', 'Location2', 'Location3', ...]  # Add your locations here
+
+    # Check if the range is valid
+    if a > b:
+        raise ValueError("a should be less than or equal to b")
+
+    # Assign a random value to each location
+    assignments = {location: random.uniform(a, b) for location in locations}
+    
+    return assignments
 
 
 #reads the CSVs, constructs the graph (requires callign edge/loc pref assignments) and returns it
 def read_csv(locFile, edgeFile):
-    pass
+    # Read the locations and edges CSV files
+    locations_df = pd.read_csv(locFile)
+    edges_df = pd.read_csv(edgeFile)
+
+    # Create a graph
+    G = nx.Graph()
+
+    # Add nodes (locations) to the graph
+    for location in locations_df['location']:
+        G.add_node(location)
+
+    # Add edges to the graph
+    # Assuming the edges CSV has two columns 'location1' and 'location2'
+    for index, row in edges_df.iterrows():
+        G.add_edge(row['location1'], row['location2'])
+
+    # Convert the graph to an adjacency list
+    adjacency_list = nx.to_dict_of_lists(G)
+
+    return adjacency_list
 
 
 def main():

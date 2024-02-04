@@ -51,7 +51,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
             next = []
             for neighbor, distance, edge_pref in G[location]:
                 location_utility = locationPrefs[neighbor] if neighbor not in path else 0
-                edge_utility = edge_pref #check for duplicate edges
+                edge_utility = edge_pref if not check_duplicate_edge(path, location, neighbor) else 0
 
                 next.append((neighbor, path + [neighbor], h + location_utility + edge_utility))
             next.sort(key=lambda x: x[2])
@@ -63,6 +63,12 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
     print(solutions)
 
     return solutions
+
+def check_duplicate_edge(path, start, next): 
+    for i in range(len(path) - 1): 
+        if path[i] == start and path[i+1] == next: 
+            return True
+    return False
 
 def make_graph(locations_df, edges_df):
     G = defaultdict(list)

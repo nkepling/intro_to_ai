@@ -2,7 +2,7 @@ from collections import defaultdict
 import random
 import networkx as nx
 import pandas as pd
-
+import time
 
 class Node: 
     def __init__(self): 
@@ -22,12 +22,18 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
     stack = []
     #stack objects look like (LocationName, Path, Heauristic Value)
     stack.append((startLoc, [startLoc], 0))
+    startTime = time.time()
+
 
     while True: 
         if len(solutions) > 0: 
+            pauseStart = time.time()
             print("Found " + str(len(solutions)) + " solutions ")
             yn = input("Would you like to keep searching? (y/n) ")
+            pauseEnd = time.time()
+            startTime += pauseEnd - pauseStart
             if yn == 'n': 
+                endTime = time.time()
                 break
 
 
@@ -60,7 +66,10 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
 
     print('Solutions: ')
+    totalTime = endTime - startTime
     print(solutions)
+
+
 
     return solutions
 

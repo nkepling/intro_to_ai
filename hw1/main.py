@@ -1,3 +1,9 @@
+from collections import defaultdict
+import random
+import networkx as nx
+import pandas as pd
+
+
 class Node: 
     def __init__(self): 
         self.name = ''
@@ -5,8 +11,74 @@ class Node:
         self.children = []
     
 def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
-    pass
+    print("Starting search...")
 
+    locations_df, edges_df = read_csv(LocFile, EdgeFile)
+
+    G, locationPrefs = make_graph(locations_df, edges_df)
+
+    # Initalize the frontier and solution arrays
+    solutions = []
+    stack = []
+    #stack objects look like (LocationName, Path, Heauristic Value)
+    stack.append((startLoc, [startLoc], 0))
+
+    while True: 
+        if len(solutions) > 0: 
+            print("Found " + str(len(solutions)) + " solutions ")
+            yn = input("Would you like to keep searching? (y/n) ")
+            if yn == 'n': 
+                break
+
+
+        while stack: 
+            location, path, h = stack.pop()
+
+            #check for time constraint here
+            if time_estimate(path, x_mph,locationPrefs,G) > maxTime:
+                continue
+
+            #check if location == start location and path is a round trip
+            if location == startLoc and len(path) > 1:
+                solutions.append((path, h))
+                if len(solutions) < 3:
+                    continue
+                elif len(solutions) == 3 or len(solutions) % 6 == 0: # ask user to continue or not every 6 solutions and when first 3 are found
+                    break
+                    
+
+
+            next = []
+            for neighbor, distance, edge_pref in G[location]:
+                location_utility = locationPrefs[neighbor] if neighbor not in path else 0
+                edge_utility = edge_pref #check for duplicate edges
+
+                next.append((neighbor, path + [neighbor], h + location_utility + edge_utility))
+            next.sort(key=lambda x: x[2])
+
+            stack.extend(next)
+
+
+    print('Solutions: ')
+    print(solutions)
+
+    return solutions
+
+def make_graph(locations_df, edges_df):
+    G = defaultdict(list)
+    locationPrefs = defaultdict(float)
+
+    # construct adjacency list with loc/edge prefs
+    for _, row in edges_df.iterrows(): 
+        edgePref = random.uniform(0,.1)
+        # location name => array of tuples (location, distance, edge preference)
+        G[row['locationA']].append((row['locationB'], row['actualDistance'], edgePref))
+        G[row['locationB']].append((row['locationA'], row['actualDistance'], edgePref))
+        # location name => location preference
+        locationPrefs[row['locationA']] = random.uniform(0,1)
+        locationPrefs[row['locationB']] = random.uniform(0,1)
+
+    return G, locationPrefs
 
 #returns the sum of all location and all edge preferences in a road trip. 
 # The roadtrip argument can be any graph of valid locations and edges – it need 
@@ -19,19 +91,43 @@ def total_preference(roadtrip):
 
 
 # computes the time required by a road trip in terms of its constituent edges and locations
-def time_estimate(roadtrip, x_mph):
-    pass
+def time_estimate(roadtrip, x_mph, locationPrefs,G):
+    time = time_at_location(locationPrefs[roadtrip[0]])
+    for i in range(len(roadtrip) - 1):
+        time += compute_travel_time(roadtrip[i], roadtrip[i+1], x_mph,G)
+        time += time_at_location(locationPrefs[roadtrip[i+1]])
+    
+    return time
+
+# this function c
+def compute_travel_time(start,end,x_mph,G): 
+    for neighbor, distance, edge_pref in G[start]:
+        if neighbor == end: 
+            return (float(distance) / x_mph) + time_at_location(edge_pref)
+    
 
 
-# the greater the preference for a location, the more time spent at the location. loc can be an edge or vertex
-def time_at_location(loc):
-    pass
+# time at a location as a functino of the location's preference
+def time_at_location(preference):
+    return float(preference)*10 #arbitrary scaling factor
 
 
 # assigns random values between a=0 and b=0.1 inclusive using a uniform distribution to each 
 # edge independently. Note that edges have a smaller preference upper bound than locations for Program 1
 def edge_preference_assignments(a, b):
-    pass
+
+    if not (0 <= a <= b <= 0.1):
+        raise ValueError("Invalid range for 'a' and 'b'. Should be between 0 and 0.1")
+
+    #Placeholder until we figure out how we want to store the prefrence. 
+    edges = [("node1", "node2"), ("node2", "node3"), ("node3", "node4")]
+
+    edge_assignments = {}
+
+    for edge in edges:
+        edge_assignments[edge] = random.uniform(a, b)
+
+    return edge_assignments
 
 # assigns random values between a=0 and b=1 inclusive using a uniform distribution to each location independently
 def location_preference_assignments(a, b):
@@ -50,30 +146,32 @@ def location_preference_assignments(a, b):
 
 #reads the CSVs, constructs the graph (requires callign edge/loc pref assignments) and returns it
 def read_csv(locFile, edgeFile):
+
     # Read the locations and edges CSV files
     locations_df = pd.read_csv(locFile)
     edges_df = pd.read_csv(edgeFile)
 
-    # Create a graph
-    G = nx.Graph()
-
-    # Add nodes (locations) to the graph
-    for location in locations_df['location']:
-        G.add_node(location)
-
-    # Add edges to the graph
-    # Assuming the edges CSV has two columns 'location1' and 'location2'
-    for index, row in edges_df.iterrows():
-        G.add_edge(row['location1'], row['location2'])
-
-    # Convert the graph to an adjacency list
-    adjacency_list = nx.to_dict_of_lists(G)
-
-    return adjacency_list
+    return locations_df, edges_df
 
 
 def main():
-    RoundTripRoadTrip('A', 'locations.csv', 'edges.csv', 100, 5, 'result.csv')
+
+    startLoc = "ColumbusOH"
+    LocFile = 'locations.csv'
+    EdgeFile = 'edges.csv'
+    maxTime = 200
+    x_mph = 10
+    resultFile = 'result.csv'
+
+    RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile)
+
+    
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

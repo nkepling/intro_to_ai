@@ -67,6 +67,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
     print('Solutions: ')
     totalTime = endTime - startTime
+    summary_stats(solutions,totalTime)
     print_solutions(solutions,resultFile)
 
 
@@ -182,6 +183,29 @@ def print_solutions(solutions,resultFile):
 
     df.to_csv(resultFile,index=False)
     print("Data Saved to CSV")
+
+def summary_stats(solutions,total_time):
+
+    max_pref = 0
+    min_pref = 99999999
+    sum_pref = 0
+
+    for p in solutions:
+        pref = p[1]
+        if p[1] >= max_pref:
+            max_pref = p[1]
+
+        if p[1] <= min_pref:
+            min_pref = p[1]
+
+        sum_pref+=p[1]
+
+    print("Average search time per solution: ", total_time/(len(solutions)))
+    print("Max TotalTripPreference", max_pref)
+    print("Min TotalTripPreference", min_pref)
+    print("Average TotalTripPrefrence", sum_pref/(len(solutions)) )
+
+    return {"Max":max_pref,"Min":min_pref,"Average_Time":total_time/len(solutions),"Ave_Pref":sum_pref/(len(solutions))}
 
 
 def main():

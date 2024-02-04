@@ -67,7 +67,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
     print('Solutions: ')
     totalTime = endTime - startTime
-    print(solutions)
+    print_solutions(solutions)
 
 
 
@@ -167,6 +167,21 @@ def read_csv(locFile, edgeFile):
     edges_df = pd.read_csv(edgeFile)
 
     return locations_df, edges_df
+
+def print_solutions(solutions):
+
+    d = {"path":[],
+         "pref":[]}
+
+    for p in solutions:
+        string_path = "-".join(p[0])
+        d["path"].append(string_path)
+        d["pref"].append(p[1])
+
+    df = pd.DataFrame(d)
+
+    df.to_csv('resultsFile.csv',index=False)
+    print("Data Saved to CSV")
 
 
 def main():

@@ -14,6 +14,25 @@ class Node:
         # self.children stores adjacent nodes via the following interfact (Node, Length, Edge Preference) <- that's a tuple
         self.children = []
 
+## This function performs a search for round trip road trips starting from a given location. It reads location and edge information from specified files, constructs a graph, and searches for all possible round trips that fit within a specified maximum time constraint.
+"""
+    Parameters:
+    startLoc (str): The starting location for the road trip.
+    LocFile (str): The file path to a CSV file containing location data.
+    EdgeFile (str): The file path to a CSV file containing edge (road) data between locations.
+    maxTime (int/float): The maximum time allowed for the road trip in hours.
+    x_mph (int/float): The average speed in miles per hour for the road trip.
+    resultFile (str): The file path where the results will be saved.
+
+    The search algorithm uses a depth-first approach, storing potential paths in a stack and evaluating them based on a heuristic value. It prompts the user at regular intervals to decide whether to continue the search.
+
+    Returns:
+    solutions (list of tuples): A list of tuples, where each tuple contains a valid round trip path and its heuristic value. Each path is a round trip that starts and ends at the startLoc, fits within the maxTime constraint, and optimizes for location and edge preferences.
+
+    Note:
+    - The function prints the search progress and the found solutions.
+    - The function saves a summary of the solutions and statistics about the search to the specified result file.
+"""
 def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
     print("Starting search...")
 

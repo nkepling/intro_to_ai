@@ -1,15 +1,15 @@
 from collections import defaultdict
 import random
-import networkx as nx
+#import networkx as nx
 import pandas as pd
 import time
 
-class Node: 
-    def __init__(self): 
+class Node:
+    def __init__(self):
         self.name = ''
         # self.children stores adjacent nodes via the following interfact (Node, Length, Edge Preference) <- that's a tuple
         self.children = []
-    
+
 def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
     print("Starting search...")
 
@@ -25,19 +25,19 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
     startTime = time.time()
 
 
-    while True: 
-        if len(solutions) > 0: 
+    while True:
+        if len(solutions) > 0:
             pauseStart = time.time()
             print("Found " + str(len(solutions)) + " solutions ")
             yn = input("Would you like to keep searching? (y/n) ")
             pauseEnd = time.time()
             startTime += pauseEnd - pauseStart
-            if yn == 'n': 
+            if yn == 'n':
                 endTime = time.time()
                 break
 
 
-        while stack: 
+        while stack:
             location, path, h = stack.pop()
 
             #check for time constraint here
@@ -51,7 +51,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
                     continue
                 elif len(solutions) == 3 or len(solutions) % 6 == 0: # ask user to continue or not every 6 solutions and when first 3 are found
                     break
-                    
+
 
 
             next = []
@@ -74,9 +74,9 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
     return solutions
 
-def check_duplicate_edge(path, start, next): 
-    for i in range(len(path) - 1): 
-        if path[i] == start and path[i+1] == next: 
+def check_duplicate_edge(path, start, next):
+    for i in range(len(path) - 1):
+        if path[i] == start and path[i+1] == next:
             return True
     return False
 
@@ -84,23 +84,26 @@ def make_graph(locations_df, edges_df):
     G = defaultdict(list)
     locationPrefs = defaultdict(float)
 
-    # construct adjacency list with loc/edge prefs
-    for _, row in edges_df.iterrows(): 
-        edgePref = random.uniform(0,.1)
-        # location name => array of tuples (location, distance, edge preference)
-        G[row['locationA']].append((row['locationB'], row['actualDistance'], edgePref))
-        G[row['locationB']].append((row['locationA'], row['actualDistance'], edgePref))
-        # location name => location preference
-        locationPrefs[row['locationA']] = random.uniform(0,1)
-        locationPrefs[row['locationB']] = random.uniform(0,1)
+    # Assigning preference value to each location
+    location_preference_assignments(0, 1, locations_df)
+
+    # Assigning preference value to each edge
+    edge_preference_assignments(0, 0.1, edges_df)
+
+    for _, row in locations_df.iterrows():
+        locationPrefs[row['Location Label']] = row['Preference']
+
+    for _, row in edges_df.iterrows():
+        G[row['locationA']].append((row['locationB'], row['actualDistance'], row['Preference']))
+        G[row['locationB']].append((row['locationA'], row['actualDistance'], row['Preference']))
 
     return G, locationPrefs
 
-#returns the sum of all location and all edge preferences in a road trip. 
-# The roadtrip argument can be any graph of valid locations and edges – it need 
-# not be round trip, and it need not be connected — this is because the function 
+#returns the sum of all location and all edge preferences in a road trip.
+# The roadtrip argument can be any graph of valid locations and edges – it need
+# not be round trip, and it need not be connected — this is because the function
 # can be called on partially constructed road-trips at intermediate points in search,
-# as well as being called to evaluate the utility of a fully-connected round-trip. 
+# as well as being called to evaluate the utility of a fully-connected round-trip.
 # You decide on the internal representation of the roadtrip argument.
 def total_preference(roadtrip):
     pass
@@ -112,15 +115,15 @@ def time_estimate(roadtrip, x_mph, locationPrefs,G):
     for i in range(len(roadtrip) - 1):
         time += compute_travel_time(roadtrip[i], roadtrip[i+1], x_mph,G)
         time += time_at_location(locationPrefs[roadtrip[i+1]])
-    
+
     return time
 
 # this function c
-def compute_travel_time(start,end,x_mph,G): 
+def compute_travel_time(start,end,x_mph,G):
     for neighbor, distance, edge_pref in G[start]:
-        if neighbor == end: 
+        if neighbor == end:
             return (float(distance) / x_mph) + time_at_location(edge_pref)
-    
+
 
 
 # time at a location as a functino of the location's preference
@@ -128,37 +131,31 @@ def time_at_location(preference):
     return float(preference)*10 #arbitrary scaling factor
 
 
-# assigns random values between a=0 and b=0.1 inclusive using a uniform distribution to each 
-# edge independently. Note that edges have a smaller preference upper bound than locations for Program 1
-def edge_preference_assignments(a, b):
+# assigns random values between a=0 and b=0.1 inclusive using a uniform distribution to each
+# edge independently. Adds the preference value to a dataframe containing all the edges.
+def edge_preference_assignments(a, b, edges_df):
 
+    # Checking if the range is valid
     if not (0 <= a <= b <= 0.1):
         raise ValueError("Invalid range for 'a' and 'b'. Should be between 0 and 0.1")
 
-    #Placeholder until we figure out how we want to store the prefrence. 
-    edges = [("node1", "node2"), ("node2", "node3"), ("node3", "node4")]
+    for index, row in edges_df.iterrows():
+        edges_df.at[index, 'Preference'] = random.uniform(a, b)
 
-    edge_assignments = {}
+    return
 
-    for edge in edges:
-        edge_assignments[edge] = random.uniform(a, b)
-
-    return edge_assignments
-
-# assigns random values between a=0 and b=1 inclusive using a uniform distribution to each location independently
-def location_preference_assignments(a, b):
-    # Predefined list of locations
-    locations = ['Location1', 'Location2', 'Location3', ...]  # Add your locations here
+# assigns random values between a=0 and b=1 inclusive using a uniform distribution to each location independently.
+# Adds the preference value to a dataframe containing all the locations.
+def location_preference_assignments(a, b, locations_df):
 
     # Check if the range is valid
-    if a > b:
-        raise ValueError("a should be less than or equal to b")
+    if not (0 <= a <= b <= 1):
+        raise ValueError("Invalid range for 'a' and 'b'. Should be between 0 and 1")
 
-    # Assign a random value to each location
-    assignments = {location: random.uniform(a, b) for location in locations}
-    
-    return assignments
+    for index, row in locations_df.iterrows():
+        locations_df.at[index, 'Preference'] = random.uniform(a, b)
 
+    return
 
 #reads the CSVs, constructs the graph (requires callign edge/loc pref assignments) and returns it
 def read_csv(locFile, edgeFile):
@@ -219,7 +216,7 @@ def main():
 
     RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile)
 
-    
+
 
 
 

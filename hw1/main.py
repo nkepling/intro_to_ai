@@ -1,3 +1,7 @@
+## Group #7
+## Members: Mohammad Khan, Nathan Keplinger, Raj Chopra, Theo Hodges
+## How to run: 
+
 from collections import defaultdict
 import random
 #import networkx as nx

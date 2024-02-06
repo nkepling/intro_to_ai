@@ -97,12 +97,64 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
     return solutions
 
+ """
+    Checks if an edge, defined by a start and next location, already exists in a given path.
+
+    This function is used to ensure that a new edge (road) being considered for addition to a road trip path is not a duplicate of an edge already in the path. This is important for avoiding revisiting the same road between two specific locations.
+
+    Parameters:
+    path (list): The current path of the road trip as a list of locations.
+    start (str): The starting location of the edge to check.
+    next (str): The next location (destination) of the edge to check.
+
+    Returns:
+    bool: Returns True if the edge (start to next) is already present in the path, False otherwise.
+
+    The function iterates through the path and compares each consecutive pair of locations with the start and next locations. If a match is found, it indicates that the edge is a duplicate.
+"""
 def check_duplicate_edge(path, start, next):
     for i in range(len(path) - 1):
         if path[i] == start and path[i+1] == next:
             return True
     return False
 
+
+"""
+    Constructs a graph representation of locations and edges for a road trip, 
+    along with preference scores for each location and edge.
+
+    This function takes dataframes containing information about locations and 
+    edges and converts them into a graph structure. It assigns preference scores 
+    to each location and edge based on the data provided. This graph is used to 
+    facilitate the search for optimal road trip paths.
+
+    Parameters:
+    locations_df (DataFrame): A Pandas DataFrame containing information about 
+                              various locations. Expected to have columns for 
+                              'Location Label' and 'Preference'.
+    edges_df (DataFrame): A Pandas DataFrame containing information about edges 
+                          (roads) between locations. Expected to have columns 
+                          for 'locationA', 'locationB', 'actualDistance', and 
+                          'Preference'.
+
+    The function initializes a graph (G) and a dictionary for location preferences 
+    (locationPrefs). It then iterates through the dataframes to populate these 
+    structures with the relevant data.
+
+    Returns:
+    tuple: A tuple containing two elements:
+           1. G (defaultdict of list): A graph represented as an adjacency list, 
+              where each key is a location, and its value is a list of tuples 
+              (neighbor location, distance, edge preference).
+           2. locationPrefs (defaultdict of float): A dictionary mapping each 
+              location to its preference score.
+
+    Note:
+    - The graph is undirected; hence, for each edge in edges_df, entries are made 
+      for both directions.
+    - Preference scores are used to evaluate the desirability of visiting a 
+      location or traveling an edge during the road trip.
+"""
 def make_graph(locations_df, edges_df):
     G = defaultdict(list)
     locationPrefs = defaultdict(float)
@@ -122,12 +174,41 @@ def make_graph(locations_df, edges_df):
 
     return G, locationPrefs
 
-#returns the sum of all location and all edge preferences in a road trip.
-# The roadtrip argument can be any graph of valid locations and edges – it need
-# not be round trip, and it need not be connected — this is because the function
-# can be called on partially constructed road-trips at intermediate points in search,
-# as well as being called to evaluate the utility of a fully-connected round-trip.
-# You decide on the internal representation of the roadtrip argument.
+
+"""
+    Calculates the total preference score for a given road trip path.
+
+    This function computes the overall utility or preference score of a road trip 
+    by summing up the preference scores of each location visited and the preference 
+    scores of each edge (road segment) traversed in the trip. The preference scores 
+    for locations and edges are provided as input in the form of a dictionary and 
+    graph respectively.
+
+    Parameters:
+    roadtrip (list): A list of location names (strings) representing the order of 
+                     locations visited in the road trip.
+    locationPrefs (dict): A dictionary where keys are location names and values are 
+                          their corresponding preference scores (floats).
+    G (dict): A graph represented as a dictionary of dictionaries, where each key is 
+              a location, and its value is another dictionary representing the edges 
+              from this location to other locations. Each edge has an associated 
+              preference score.
+
+    The function iterates through each location in the road trip list, adding the 
+    preference score of each location. It then iterates through the pairs of 
+    consecutive locations in the road trip, adding the preference score of the edge 
+    that connects these locations.
+
+    Returns:
+    int/float: The total preference score (utility) of the road trip, summing both 
+               location and edge preferences.
+
+    Note:
+    - The function assumes that the road trip list provided is a valid path in the 
+      graph G.
+    - Edge preferences are only added for direct connections between consecutive 
+      locations in the road trip list.
+"""
 def total_preference(roadtrip, locationPrefs, G):
     util = 0
     for i in range(len(roadtrip)):

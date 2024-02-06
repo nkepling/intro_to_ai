@@ -268,7 +268,42 @@ def time_estimate(roadtrip, x_mph, locationPrefs,G):
 
     return time
 
-# this function c
+
+"""
+    Computes the travel time between two specific locations, factoring in the 
+    distance and average travel speed, as well as additional time influenced by 
+    the preference score of the edge.
+
+    This function is designed to estimate the time it takes to travel from one 
+    location to another in a road trip graph. It takes into account the physical 
+    distance between the locations and the average speed of travel. Additionally, 
+    it considers the edge preference score, which can represent factors like road 
+    quality or scenic value, to adjust the travel time.
+
+    Parameters:
+    start (str): The starting location's name.
+    end (str): The destination location's name.
+    x_mph (float/int): The average speed of travel in miles per hour.
+    G (dict): A graph represented as a dictionary of dictionaries, where each key 
+              is a location, and its value is another dictionary representing the 
+              edges from this location to other locations, including distance and 
+              edge preference.
+
+    The function iterates through the edges of the starting location in the graph 
+    G to find the edge connecting to the end location. It calculates the travel time 
+    as the distance divided by the speed, and adds time based on the edge's preference 
+    score.
+
+    Returns:
+    float: The estimated time to travel from the start location to the end location, 
+           including any additional time influenced by the edge's preference score.
+
+    Note:
+    - `time_at_location` is assumed to be a function that calculates additional time 
+      at a location or on an edge based on its preference score.
+    - The function returns the travel time only for the direct edge between the start 
+      and end locations.
+"""
 def compute_travel_time(start,end,x_mph,G):
     for neighbor, distance, edge_pref in G[start]:
         if neighbor == end:
@@ -281,8 +316,29 @@ def time_at_location(preference):
     return float(preference)*10 #arbitrary scaling factor
 
 
-# assigns random values between a=0 and b=0.1 inclusive using a uniform distribution to each
-# edge independently. Adds the preference value to a dataframe containing all the edges.
+
+"""
+    Assigns a random preference value to each edge in a dataframe using a uniform distribution.
+
+    This function iterates through each edge in a provided dataframe and assigns a 
+    random preference value to it. The preference value for each edge is generated 
+    using a uniform distribution between two specified values, a and b. These values 
+    represent the range within which the preference values are to be generated.
+
+    Parameters:
+    a (float): The lower bound of the range for generating preference values.
+    b (float): The upper bound of the range for generating preference values.
+    edges_df (DataFrame): A Pandas DataFrame containing the edges. It is expected 
+                          to have a 'Preference' column where the generated values 
+                          will be stored.
+
+    The function updates the 'Preference' column in the edges dataframe with random 
+    values between a and b, inclusive.
+
+    Note:
+    - The range for preference values [a, b] is validated to be within [0, 0.1].
+    - The function modifies the dataframe in place and does not return a value.
+"""
 def edge_preference_assignments(a, b, edges_df):
 
     # Checking if the range is valid
@@ -294,8 +350,29 @@ def edge_preference_assignments(a, b, edges_df):
 
     return
 
-# assigns random values between a=0 and b=1 inclusive using a uniform distribution to each location independently.
-# Adds the preference value to a dataframe containing all the locations.
+
+"""
+    Assigns a random preference value to each location in a dataframe using a uniform distribution.
+
+    Similar to edge preference assignment, this function iterates through each location 
+    in a provided dataframe and assigns a random preference value. The preference value 
+    for each location is generated using a uniform distribution between two specified 
+    values, a and b, defining the range for preference values.
+
+    Parameters:
+    a (float): The lower bound of the range for generating preference values.
+    b (float): The upper bound of the range for generating preference values.
+    locations_df (DataFrame): A Pandas DataFrame containing the locations. It is 
+                              expected to have a 'Preference' column where the 
+                              generated values will be stored.
+
+    The function updates the 'Preference' column in the locations dataframe with 
+    random values between a and b, inclusive.
+
+    Note:
+    - The range for preference values [a, b] is validated to be within [0, 1].
+    - The function modifies the dataframe in place and does not return a value.
+"""
 def location_preference_assignments(a, b, locations_df):
 
     # Check if the range is valid

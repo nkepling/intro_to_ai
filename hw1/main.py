@@ -528,3 +528,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+## Qualitative comments:
+## None of our tests cases corresponded to a solution that could not be found. The solutions did not monotonically 
+## decrease in value. All cases met the time constraints and were all valid solutions to a roundtrip roadtrip.
+
+## Quantitative values are stored in the testrun results.

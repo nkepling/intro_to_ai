@@ -1,6 +1,6 @@
 ## Group #7
 ## Members: Mohammad Khan, Nathan Keplinger, Raj Chopra, Theo Hodges
-## How to run: 
+## How to run: Run python ./main.py in a terminal (assuming in the right directory)
 
 from collections import defaultdict
 import random

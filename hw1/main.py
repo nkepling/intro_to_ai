@@ -105,9 +105,17 @@ def make_graph(locations_df, edges_df):
 # can be called on partially constructed road-trips at intermediate points in search,
 # as well as being called to evaluate the utility of a fully-connected round-trip.
 # You decide on the internal representation of the roadtrip argument.
-def total_preference(roadtrip):
-    pass
+def total_preference(roadtrip, locationPrefs, G):
+    util = 0
+    for i in range(len(roadtrip)):
+        util += locationPrefs[roadtrip[i]]
 
+    for i in range(len(roadtrip) - 1):
+        for neighbor, distance, edge_pref in G[roadtrip[i]]:
+            if neighbor == roadtrip[i+1]:
+                util += edge_pref
+    
+    return util
 
 # computes the time required by a road trip in terms of its constituent edges and locations
 def time_estimate(roadtrip, x_mph, locationPrefs,G):

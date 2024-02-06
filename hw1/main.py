@@ -221,7 +221,45 @@ def total_preference(roadtrip, locationPrefs, G):
     
     return util
 
-# computes the time required by a road trip in terms of its constituent edges and locations
+
+"""
+    Estimates the total time for a given road trip, including time spent traveling 
+    and time spent at each location.
+
+    This function calculates the total time required to complete a road trip based 
+    on the average travel speed and the time allocated for each location on the trip. 
+    The time at each location is determined by a location preference score, and the 
+    travel time between locations is calculated based on the distance between them 
+    and the average speed.
+
+    Parameters:
+    roadtrip (list): A list of location names (strings) representing the sequence of 
+                     locations visited in the road trip.
+    x_mph (float/int): The average speed of travel in miles per hour.
+    locationPrefs (dict): A dictionary mapping location names to their corresponding 
+                          preference scores, which influence the time spent at each 
+                          location.
+    G (dict): A graph represented as a dictionary of dictionaries, where each key 
+              is a location, and its value is another dictionary representing the edges 
+              from this location to other locations, including the distance to each 
+              neighbor.
+
+    The function starts by calculating the initial time spent at the first location. 
+    It then iterates through each pair of consecutive locations, computing the travel 
+    time between them and adding the time spent at the next location. The travel 
+    time is calculated using a helper function `compute_travel_time` which takes 
+    into account the distance between locations and the average speed.
+
+    Returns:
+    float: The estimated total time for the road trip, combining travel time and 
+           time spent at each location.
+
+    Note:
+    - `time_at_location` is a function that calculates the time to be spent at a 
+      location based on its preference score.
+    - `compute_travel_time` is a function that calculates the time to travel between 
+      two locations based on the distance and average speed.
+"""
 def time_estimate(roadtrip, x_mph, locationPrefs,G):
     time = time_at_location(locationPrefs[roadtrip[0]])
     for i in range(len(roadtrip) - 1):

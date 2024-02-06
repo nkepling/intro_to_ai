@@ -90,14 +90,14 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile):
 
     print('Solutions: ')
     totalTime = endTime - startTime
-    summary_stats(solutions,totalTime)
+    
     print_solutions(solutions,resultFile)
-
+    summary_stats(solutions,totalTime,resultFile)
 
 
     return solutions
 
- """
+"""
     Checks if an edge, defined by a start and next location, already exists in a given path.
 
     This function is used to ensure that a new edge (road) being considered for addition to a road trip path is not a duplicate of an edge already in the path. This is important for avoiding revisiting the same road between two specific locations.
@@ -291,9 +291,9 @@ def print_solutions(solutions,resultFile):
     df = pd.DataFrame(d)
 
     df.to_csv(resultFile,index=False)
-    print("Data Saved to CSV")
+    print("Data Saved to txt file")
 
-def summary_stats(solutions,total_time):
+def summary_stats(solutions,total_time,resultsFile):
 
     max_pref = 0
     min_pref = 99999999
@@ -309,12 +309,19 @@ def summary_stats(solutions,total_time):
 
         sum_pref+=p[1]
 
+    stats = {"Max":max_pref,"Min":min_pref,"Average_Time":total_time/len(solutions),"Ave_Pref":sum_pref/(len(solutions))}
+
     print("Average search time per solution: ", total_time/(len(solutions)))
     print("Max TotalTripPreference", max_pref)
     print("Min TotalTripPreference", min_pref)
     print("Average TotalTripPrefrence", sum_pref/(len(solutions)) )
 
-    return {"Max":max_pref,"Min":min_pref,"Average_Time":total_time/len(solutions),"Ave_Pref":sum_pref/(len(solutions))}
+    with open(resultsFile, 'a') as file:
+        file.write('\n')
+        for k,v in stats.items():
+            file.write(k+ " : " + f"{v}" + '\n')
+
+    return stats
 
 
 def main():
@@ -324,9 +331,11 @@ def main():
     EdgeFile = 'edges.csv'
     maxTime = 200
     x_mph = 10
-    resultFile = 'result.csv'
+    resultFile = 'result.txt'
+    
 
-    RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, resultFile)
+    for run in range(1,4):
+        RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, f"testrun_{run}_" + resultFile)
 
 
 

@@ -393,6 +393,38 @@ def read_csv(locFile, edgeFile):
 
     return locations_df, edges_df
 
+
+
+"""
+    Processes and saves the found road trip solutions to a CSV file.
+
+    This function takes a list of road trip solutions and converts it into a 
+    structured format suitable for saving into a CSV file. Each solution in the 
+    list is a tuple containing the path (sequence of locations) and the associated 
+    preference score. The function formats each path into a string representation 
+    and pairs it with its preference score. It then creates a Pandas DataFrame 
+    from this data and saves it to the specified CSV file.
+
+    Parameters:
+    solutions (list of tuples): A list where each tuple contains a road trip path 
+                                (list of strings) and its corresponding preference 
+                                score (float or int).
+    resultFile (str): The file path where the CSV file will be saved.
+
+    The function creates a dictionary with two keys: 'path' and 'pref', where 'path' 
+    stores the string representation of each road trip path, and 'pref' stores the 
+    corresponding preference score. This dictionary is then converted into a 
+    DataFrame and saved to the specified file.
+
+    The function also prints a message confirming that the data has been successfully 
+    saved to the CSV file.
+
+    Note:
+    - The resulting CSV file contains two columns: 'path' and 'pref'.
+    - The 'path' column contains the road trip paths as strings, and the 'pref' 
+      column contains the corresponding preference scores.
+    - The function does not return any value.
+"""
 def print_solutions(solutions,resultFile):
 
     d = {"path":[],
@@ -408,6 +440,39 @@ def print_solutions(solutions,resultFile):
     df.to_csv(resultFile,index=False)
     print("Data Saved to txt file")
 
+
+"""
+    Calculates and prints summary statistics for road trip solutions, and appends 
+    these statistics to a results file.
+
+    This function processes a list of road trip solutions to compute various 
+    statistical measures, including the maximum and minimum preference scores, 
+    average search time per solution, and the average preference score. It prints 
+    these statistics for quick reference and appends them to a specified results 
+    file for documentation.
+
+    Parameters:
+    solutions (list of tuples): A list where each tuple contains a road trip path 
+                                (list of strings) and its corresponding preference 
+                                score (float or int).
+    total_time (float): The total time taken to find all solutions.
+    resultsFile (str): The file path to the results file where the summary statistics 
+                       will be appended.
+
+    The function iterates through each solution, updating the maximum and minimum 
+    preference scores and accumulating the total preference score. It then calculates 
+    the average search time per solution and the average preference score. These 
+    statistics are stored in a dictionary and printed to the console. 
+
+    The statistics are also formatted as text and appended to the specified results 
+    file. The function returns the dictionary containing the calculated statistics.
+
+    Note:
+    - The results file is appended with the summary statistics, allowing for a 
+      cumulative record if the function is called multiple times.
+    - The dictionary returned contains keys 'Max', 'Min', 'Average_Time', and 
+      'Ave_Pref' with corresponding statistical values.
+"""
 def summary_stats(solutions,total_time,resultsFile):
 
     max_pref = 0

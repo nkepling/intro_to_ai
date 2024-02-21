@@ -1,4 +1,9 @@
 path,pref
-ColumbusOH-PittsburghPA-ClevelandOH-EriePA-BuffaloNY-RochesterNY-SyracuseNY-ScrantonPA-AllentownPA-HarrisburgPA-PittsburghPA-ColumbusOH,4.142167388772892
-ColumbusOH-PittsburghPA-ClevelandOH-EriePA-BuffaloNY-RochesterNY-SyracuseNY-RochesterNY-BuffaloNY-EriePA-PittsburghPA-ColumbusOH,3.4359514239221927
-ColumbusOH-PittsburghPA-ClevelandOH-EriePA-BuffaloNY-RochesterNY-SyracuseNY-RochesterNY-BuffaloNY-EriePA-ClevelandOH-ToledoOH-ColumbusOH,3.7140284946313784
+ColumbusOH-PittsburghPA-EriePA-ClevelandOH-ToledoOH-DetroitMI-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-IndianapolisIN-ColumbusOH,5.898140825052391
+ColumbusOH-PittsburghPA-EriePA-ClevelandOH-ToledoOH-DetroitMI-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-IndianapolisIN-CincinnatiOH-ColumbusOH,5.9084337489042635
+ColumbusOH-PittsburghPA-EriePA-ClevelandOH-ToledoOH-DetroitMI-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-ToledoOH-ColumbusOH,5.510750974995178
+
+Max : 5.9084337489042635
+Min : 5.510750974995178
+Average_Time : 0.0003616015116373698
+Ave_Pref : 5.772441849650611

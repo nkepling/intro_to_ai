@@ -1,0 +1,9 @@
+path,pref
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-ColumbiaMO-StLouisMO-TerreHauteIN-IndianapolisIN-ColumbusOH,4.775193239407899
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-ChampaignIL-ChicagoIL-MilwaukeeWI-ChicagoIL-ToledoOH-ColumbusOH,6.1662659902883235
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-ChampaignIL-ChicagoIL-GrandRapidsMI-LansingMI-AnnArborMI-ColumbusOH,6.536900470073429
+
+Max : 6.536900470073429
+Min : 4.775193239407899
+Average_Time : 0.0025343100229899087
+Ave_Pref : 5.826119899923217

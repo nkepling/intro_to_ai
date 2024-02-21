@@ -1,0 +1,12 @@
+path,pref
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-HuntingtonWV-CincinnatiOH-ColumbusOH,4.183410496444542
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-CincinnatiOH-ColumbusOH,3.9772742822287745
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-CincinnatiOH-IndianapolisIN-ColumbusOH,3.9785895058607155
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-LouisvilleKY-IndianapolisIN-ColumbusOH,3.997614289949395
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-LouisvilleKY-CincinnatiOH-ColumbusOH,3.9618307705652107
+ColumbusOH-DetroitMI-ToledoOH-CincinnatiOH-IndianapolisIN-LouisvilleKY-LexingtonKY-KnoxvilleTN-LexingtonKY-LouisvilleKY-LexingtonKY-CincinnatiOH-ColumbusOH,4.003285941809262
+
+Max : 4.183410496444542
+Min : 3.9618307705652107
+Average_Time : 0.9821328322092692
+Ave_Pref : 4.017000881142984

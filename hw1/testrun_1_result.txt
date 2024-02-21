@@ -1,0 +1,9 @@
+path,pref
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-UrbanaIL-ChicagoIL-ToledoOH-FortWayneIN-ToledoOH-ColumbusOH,6.342945412400096
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-UrbanaIL-ChicagoIL-ToledoOH-ClevelandOH-ToledoOH-ColumbusOH,6.112262934179268
+ColumbusOH-CincinnatiOH-IndianapolisIN-TerreHauteIN-StLouisMO-UrbanaIL-ChicagoIL-ToledoOH-ClevelandOH-ColumbusOH,6.037510222462759
+
+Max : 6.342945412400096
+Min : 6.037510222462759
+Average_Time : 0.0007466475168863932
+Ave_Pref : 6.16423952301404

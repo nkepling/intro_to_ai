@@ -1,0 +1,9 @@
+path,pref
+ColumbusOH-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-DavenportIA-ChicagoIL-ToledoOH-CincinnatiOH-ColumbusOH,4.985520216632267
+ColumbusOH-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-DavenportIA-ChicagoIL-ToledoOH-ClevelandOH-ColumbusOH,4.772034974441204
+ColumbusOH-AnnArborMI-LansingMI-GrandRapidsMI-ChicagoIL-DavenportIA-ChicagoIL-ToledoOH-DetroitMI-ToledoOH-ColumbusOH,4.658184767647278
+
+Max : 4.985520216632267
+Min : 4.658184767647278
+Average_Time : 0.0023169517517089844
+Ave_Pref : 4.805246652906916

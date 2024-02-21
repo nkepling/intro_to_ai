@@ -1,0 +1,9 @@
+path,pref
+ColumbusOH-CincinnatiOH-HuntingtonWV-LouisvilleKY-BowlingGreenKY-NashvilleTN-ClarksvilleTN-NashvilleTN-BowlingGreenKY-LouisvilleKY-IndianapolisIN-ColumbusOH,5.237879481727542
+ColumbusOH-CincinnatiOH-HuntingtonWV-LouisvilleKY-BowlingGreenKY-NashvilleTN-ClarksvilleTN-NashvilleTN-BowlingGreenKY-LouisvilleKY-CincinnatiOH-ColumbusOH,5.15175775745649
+ColumbusOH-CincinnatiOH-HuntingtonWV-LouisvilleKY-BowlingGreenKY-NashvilleTN-ClarksvilleTN-NashvilleTN-BowlingGreenKY-LouisvilleKY-LexingtonKY-CincinnatiOH-ColumbusOH,5.154413806515061
+
+Max : 5.237879481727542
+Min : 5.15175775745649
+Average_Time : 0.08105127016703288
+Ave_Pref : 5.181350348566364

@@ -11,9 +11,12 @@ class NN_Classifier():
         pass
 
 
-def load_data(file):
-    data = pd.read_csv(file)
-    data["bin"] = data.apply
+def load_data(file_path) -> pd.DataFrame:
+    data = pd.read_csv(file, encoding='utf-16', delimiter='\t')
+    data['Label'] = pd.cut(data['utility'], bins=[-np.inf, 0.2, 0.4, 0.6, 0.8, np.inf], labels=[1, 2, 3, 4, 5])
+    return data
+
+
 
 def decision_tree():
     pass
@@ -57,3 +60,9 @@ def main():
 
 if  __name__ == "__main__":
     file = 'data.txt'
+    data = load_data(file)
+    print(data.head)
+
+
+
+    

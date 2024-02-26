@@ -391,6 +391,19 @@ def data_preprocessing_decision_tree(data):
 
 
 def cross_validation_decision_tree(X, y, k=5, max_depth=15):
+    """
+    Perform k-fold cross validation for a decision tree classifier.
+
+    Parameters:
+    - X (numpy.ndarray): Input features.
+    - y (numpy.ndarray): Target labels.
+    - k (int): Number of folds for cross validation (default: 5).
+    - max_depth (int): Maximum depth of the decision tree (default: 15).
+
+    Returns:
+    - mean_accuracy (float): Mean accuracy across all folds.
+    - variance (float): Variance of accuracies across all folds.
+    """
     # Shuffle the data
     shuffled_indices = np.arange(X.shape[0])
     np.random.shuffle(shuffled_indices)
@@ -418,10 +431,22 @@ def cross_validation_decision_tree(X, y, k=5, max_depth=15):
         accuracies.append(accuracy)
 
     
-    varience = np.var(accuracies)
-    return np.mean(accuracies), varience
+    variance = np.var(accuracies)
+    return np.mean(accuracies), variance
 
 def cross_validation_back_prop(X, y, k=5, hidden_size=15):
+    """
+    Perform k-fold cross validation using back propagation neural network.
+
+    Parameters:
+    X (numpy.ndarray): Input data.
+    y (numpy.ndarray): Target data.
+    k (int): Number of folds for cross validation. Default is 5.
+    hidden_size (int): Number of hidden units in the neural network. Default is 15.
+
+    Returns:
+    tuple: Mean squared error score and variance of the scores.
+    """
     # Shuffle the data
     shuffled_indices = np.arange(X.shape[0])
     np.random.shuffle(shuffled_indices)

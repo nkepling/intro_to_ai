@@ -189,161 +189,256 @@ class BackProp():
         plt.title('Loss History over Epochs')
         plt.show()
 
+class decision_tree():
+    class Node:
+        """
+        Represents a node in a decision tree.
 
-class Node:
-    def __init__(self, feature=None, threshold=None, left=None, right=None, *, value=None):
-        self.feature = feature
-        self.threshold = threshold
-        self.left = left
-        self.right = right
-        self.value = value
+        Attributes:
+            feature: The feature used for splitting at this node.
+            threshold: The threshold value used for splitting at this node.
+            left: The left child node.
+            right: The right child node.
+            value: The predicted value at this node (only applicable for leaf nodes).
+        """
 
-    def is_leaf_node(self):
-        return self.value is not None
+        def __init__(self, feature=None, threshold=None, left=None, right=None, *, value=None):
+            """
+            Initialize a node in a decision tree.
 
-def gini_impurity(y):
-    proportions = np.bincount(y) / len(y)
-    return 1 - sum([p**2 for p in proportions if p > 0])
+            Args:
+                feature (str): The feature used for splitting at this node.
+                threshold (float): The threshold value for the feature.
+                left (Node): The left child node.
+                right (Node): The right child node.
+                value: The predicted value at this node (for leaf nodes).
 
-def calculate_best_split(X, y):
-    best_feature, best_threshold = None, None
-    best_gain = -1
-    n_samples, n_features = X.shape
-    for feature in range(n_features):
-        thresholds = np.unique(X[:, feature])
-        for threshold in thresholds:
+            Returns:
+                None
+            """
+            self.feature = feature
+            self.threshold = threshold
+            self.left = left
+            self.right = right
+            self.value = value
+
+        def is_leaf_node(self):
+            """
+            Checks if the node is a leaf node.
+
+            Returns:
+                True if the node is a leaf node, False otherwise.
+            """
+            return self.value is not None
+        
+    def __init__(self):
+        """
+        Initializes the class object.
+        """
+        self.tree = None
+
+
+    def gini_impurity(self, y):
+        """
+        Calculate the Gini impurity of a given set of labels.
+
+        Parameters:
+        - y: A list or array of labels.
+
+        Returns:
+        - The Gini impurity value.
+
+        """
+        proportions = np.bincount(y) / len(y)
+        return 1 - sum([p**2 for p in proportions if p > 0])
+
+    def calculate_best_split(self, X, y):
+            """
+            Calculates the best feature and threshold to split the data based on the Gini impurity criterion.
+
+            Parameters:
+            X (numpy.ndarray): The input features.
+            y (numpy.ndarray): The target labels.
+
+            Returns:
+            best_feature (int): The index of the best feature to split on.
+            best_threshold (float): The threshold value for the best split.
+            """
+            best_feature, best_threshold = None, None
+            best_gain = -1
+            n_samples, n_features = X.shape
+            for feature in range(n_features):
+                thresholds = np.unique(X[:, feature])
+                for threshold in thresholds:
+                    left_idx = np.where(X[:, feature] < threshold)
+                    right_idx = np.where(X[:, feature] >= threshold)
+                    if len(left_idx[0]) == 0 or len(right_idx[0]) == 0:
+                        continue
+                    
+                    left_impurity = self.gini_impurity(y[left_idx])
+                    right_impurity = self.gini_impurity(y[right_idx])
+                    gain = self.gini_impurity(y) - (len(left_idx[0]) / n_samples * left_impurity + len(right_idx[0]) / n_samples * right_impurity)
+                    
+                    if gain > best_gain:
+                        best_gain = gain
+                        best_feature = feature
+                        best_threshold = threshold
+                        
+            return best_feature, best_threshold
+
+    def build_tree(self, X, y, depth=0, max_depth=4):
+            """
+            Builds a decision tree recursively using the given dataset.
+
+            Parameters:
+            - X: numpy array, shape (n_samples, n_features)
+                The input features of the dataset.
+            - y: numpy array, shape (n_samples,)
+                The target labels of the dataset.
+            - depth: int, optional (default=0)
+                The current depth of the tree.
+            - max_depth: int, optional (default=4)
+                The maximum depth of the tree.
+
+            Returns:
+            - Node object
+                The root node of the decision tree.
+            """
+            n_samples, n_features = X.shape
+            num_labels = len(np.unique(y))
+            
+            # stopping criteria
+            if depth >= max_depth or n_samples < 2 or num_labels == 1:
+                leaf_value = np.argmax(np.bincount(y))
+                return self.Node(value=leaf_value)
+            
+            feature, threshold = self.calculate_best_split(X, y)
+            if feature is None:
+                leaf_value = np.argmax(np.bincount(y))
+                return self.Node(value=leaf_value)
+            
             left_idx = np.where(X[:, feature] < threshold)
             right_idx = np.where(X[:, feature] >= threshold)
-            if len(left_idx[0]) == 0 or len(right_idx[0]) == 0:
-                continue
-            
-            left_impurity = gini_impurity(y[left_idx])
-            right_impurity = gini_impurity(y[right_idx])
-            gain = gini_impurity(y) - (len(left_idx[0]) / n_samples * left_impurity + len(right_idx[0]) / n_samples * right_impurity)
-            
-            if gain > best_gain:
-                best_gain = gain
-                best_feature = feature
-                best_threshold = threshold
-                
-    return best_feature, best_threshold
-
-def build_tree(X, y, depth=0, max_depth=2):
-    n_samples, n_features = X.shape
-    num_labels = len(np.unique(y))
+            left = self.build_tree(X[left_idx], y[left_idx], depth + 1, max_depth)
+            right = self.build_tree(X[right_idx], y[right_idx], depth + 1, max_depth)
+            return self.Node(feature, threshold, left, right)
     
-    # stopping criteria
-    if depth >= max_depth or n_samples < 2 or num_labels == 1:
-        leaf_value = np.argmax(np.bincount(y))
-        return Node(value=leaf_value)
-    
-    feature, threshold = calculate_best_split(X, y)
-    if feature is None:
-        leaf_value = np.argmax(np.bincount(y))
-        return Node(value=leaf_value)
-    
-    left_idx = np.where(X[:, feature] < threshold)
-    right_idx = np.where(X[:, feature] >= threshold)
-    left = build_tree(X[left_idx], y[left_idx], depth + 1, max_depth)
-    right = build_tree(X[right_idx], y[right_idx], depth + 1, max_depth)
-    return Node(feature, threshold, left, right)
+    def fit(self, X, y, max_depth):
+        """
+        Fits the decision tree model to the given training data.
 
-def predict(sample, tree):
-    while not tree.is_leaf_node():
-        if sample[tree.feature] < tree.threshold:
-            tree = tree.left
-        else:
-            tree = tree.right
-    return tree.value
+        Parameters:
+            X (array-like): The input features of the training data.
+            y (array-like): The target values of the training data.
+            max_depth (int): The maximum depth of the decision tree.
+
+        Returns:
+            None
+        """
+        self.tree = self.build_tree(X, y, max_depth=max_depth)
+
+    def predict(self, sample):
+            """
+            Predicts the class label for a given sample using the decision tree.
+
+            Parameters:
+            sample (list): The feature values of the sample.
+
+            Returns:
+            int: The predicted class label.
+            """
+            current_node = self.tree
+            while not current_node.is_leaf_node():
+                if sample[current_node.feature] < current_node.threshold:
+                    current_node = current_node.left
+                else:
+                    current_node = current_node.right
+            return current_node.value
 
 
 
 
 
-
-class NN_Classifier():
-
-    def __init__(self) -> None:
-        pass
-
-    def forward(self):
-        pass
 
 
 def load_data(file):
+    """
+    Load data from a file.
+
+    Parameters:
+    file (str): The path to the file.
+
+    Returns:
+    pandas.DataFrame: The loaded data.
+    """
     data = pd.read_csv(file, encoding='utf-16', delimiter='\t')
     return data
 
 def data_preprocessing_decision_tree(data):
+    """
+    Preprocesses the data for a decision tree model by categorizing the 'utility' column into labels.
+
+    Args:
+        data (pandas.DataFrame): The input data containing the 'utility' column.
+
+    Returns:
+        pandas.DataFrame: The preprocessed data with a new 'Label' column.
+
+    """
     data['Label'] = pd.cut(data['utility'], bins=[-np.inf, 0.2, 0.4, 0.6, 0.8, np.inf], labels=[1, 2, 3, 4, 5])
     return data
 
 
 
-def decision_tree():
+
+def cross_validation(X,y, model):
+    #k-fold cross validation, k = 5
     pass
 
 
-def cross_validation(X,y,k):
-    """
-    Overview:
-        Randomaize the data and perform k fold cross-validation N times. 
-        (ie. do 5 fold cv 10 times):
-
-        Randomize data
-            Partition data into k bins
-            for b in bins:
-                treat b at test set
-                train on bins-b bins
-                test on b. 
-    Arguments:
-        X : pd.DataFrame: Features
-        y ; pd.DataFrame: labels
-        k : int: number of 
     
-    Returns: 
-        Err: float: Average Acc or MSE of N runs of k-cv 
-        Var: float: varainec of Accs over N runs of k-cv
-    """
-    pass
 
-
-def main():
-    pass
 
 
 
 
 
 if  __name__ == "__main__":
+
+    #read in data
     file = 'data.txt'
     data = load_data(file)
     X = data.drop('utility', axis=1).values.astype(np.float32)
     y = data['utility'].values.astype(np.float32).reshape(-1, 1)
 
+
+    #Train backprop model example
     model = BackProp(X.shape[1], 4, 1)
     loss = model.train_neural_network(X, y, epochs=200)
 
     #test one sample input
-    sample_index = 176
-    x_sample = X[sample_index]
+    # sample_index = 176
+    # x_sample = X[sample_index]
     # print(x_sample)
     # print(f"Predicted: {model.predict(x_sample)}, Actual: {y[sample_index]}")
 
+    #train decision tree model example
     decision_tree_data = data_preprocessing_decision_tree(data)
     y = decision_tree_data['Label'].values
 
     #split the data into training and testing
     train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.2, random_state=42)
-    tree = build_tree(train_X, train_y, max_depth=15)
+
+    tree = decision_tree()
+    tree.fit(train_X, train_y, max_depth=15)
 
     #predictions = [predict(x, tree) for x in X]
-    predictions = [predict(x, tree) for x in train_X]
+    predictions = [tree.predict(x) for x in train_X]
     print("Train Accuracy")
     print((sum(predictions == train_y))/len(train_X))
 
     print("Test Accuracy")
-    predictions = [predict(x, tree) for x in test_X]
+    predictions = [tree.predict(x) for x in test_X]
     print((sum(predictions == test_y))/len(test_X))
 
 

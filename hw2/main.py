@@ -390,10 +390,68 @@ def data_preprocessing_decision_tree(data):
 
 
 
+def cross_validation_decision_tree(X, y, k=5, max_depth=15):
+    # Shuffle the data
+    shuffled_indices = np.arange(X.shape[0])
+    np.random.shuffle(shuffled_indices)
+    X_shuffled = X[shuffled_indices]
+    y_shuffled = y[shuffled_indices]
 
-def cross_validation(X,y, model):
-    #k-fold cross validation, k = 5
-    pass
+    # Split the data into k folds
+    fold_size = X.shape[0] // k
+    accuracies = []
+
+    for fold in range(k):
+        start, end = fold * fold_size, (fold + 1) * fold_size
+        X_train = np.concatenate([X_shuffled[:start], X_shuffled[end:]])
+        y_train = np.concatenate([y_shuffled[:start], y_shuffled[end:]])
+        X_val = X_shuffled[start:end]
+        y_val = y_shuffled[start:end]
+
+        # Initialize and train the model
+        tree = decision_tree()
+        tree.fit(X_train, y_train, max_depth=max_depth)
+
+        # Predict and calculate accuracy
+        predictions = [tree.predict(x) for x in X_val]
+        accuracy = np.sum(predictions == y_val) / len(y_val)
+        accuracies.append(accuracy)
+
+    
+    varience = np.var(accuracies)
+    return np.mean(accuracies), varience
+
+def cross_validation_back_prop(X, y, k=5, hidden_size=15):
+    # Shuffle the data
+    shuffled_indices = np.arange(X.shape[0])
+    np.random.shuffle(shuffled_indices)
+    X_shuffled = X[shuffled_indices]
+    y_shuffled = y[shuffled_indices]
+
+    # Split the data into k folds
+    fold_size = X.shape[0] // k
+    mse_scores = []
+
+    for fold in range(k):
+        start, end = fold * fold_size, (fold + 1) * fold_size
+        X_train = np.concatenate([X_shuffled[:start], X_shuffled[end:]])
+        y_train = np.concatenate([y_shuffled[:start], y_shuffled[end:]])
+        X_val = X_shuffled[start:end]
+        y_val = y_shuffled[start:end]
+
+        # Initialize and train the model
+        model = BackProp(X_train.shape[1], hidden_size, 1)
+        model.train_neural_network(X_train, y_train, epochs=200)
+
+        # Predict and calculate mean squared error
+        predictions = [model.predict(x) for x in X_val]
+        mse = model.mean_squared_error(y_val, predictions)
+        mse_scores.append(mse)
+
+    return np.mean(mse_scores), np.var(mse_scores)
+
+
+
 
 
     
@@ -412,35 +470,25 @@ if  __name__ == "__main__":
     y = data['utility'].values.astype(np.float32).reshape(-1, 1)
 
 
-    #Train backprop model example
-    model = BackProp(X.shape[1], 4, 1)
-    loss = model.train_neural_network(X, y, epochs=200)
+    #Cross-validation_back_prop
+    hidden_size_choices = [4, 8, 12]
+    print("Cross-validation for back_prop")
+    for hidden_size in hidden_size_choices:
+        mse, varience = cross_validation_back_prop(X, y, k=5, hidden_size=hidden_size)
+        #i use the RMSE because it is easeir to interpret
+        print(f"Hidden Size: {hidden_size}, MSE: {mse:.3f}, Variance: {varience:.8f}, RMSE: {np.sqrt(mse):.3f}")
 
-    #test one sample input
-    # sample_index = 176
-    # x_sample = X[sample_index]
-    # print(x_sample)
-    # print(f"Predicted: {model.predict(x_sample)}, Actual: {y[sample_index]}")
 
     #train decision tree model example
     decision_tree_data = data_preprocessing_decision_tree(data)
     y = decision_tree_data['Label'].values
 
-    #split the data into training and testing
-    train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    tree = decision_tree()
-    tree.fit(train_X, train_y, max_depth=15)
-
-    #predictions = [predict(x, tree) for x in X]
-    predictions = [tree.predict(x) for x in train_X]
-    print("Train Accuracy")
-    print((sum(predictions == train_y))/len(train_X))
-
-    print("Test Accuracy")
-    predictions = [tree.predict(x) for x in test_X]
-    print((sum(predictions == test_y))/len(test_X))
-
+    print("Cross-validation for decision_tree")
+    # Cross-validation_decision_tree
+    max_depth_choices = [2, 5, 10, 15, 20]
+    for max_depth in max_depth_choices:
+        accuracy, varience = cross_validation_decision_tree(X, y, k=5, max_depth=max_depth)
+        print(f"Max Depth: {max_depth}, Accuracy: {accuracy:.3f}, Variance: {varience:.6f}")
 
 
 

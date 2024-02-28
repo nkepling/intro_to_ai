@@ -3,6 +3,10 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
+from sklearn.neural_network import MLPRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
 class BackProp():
     def __init__(self, input_size, hidden_size, output_size) -> None:
             """
@@ -55,7 +59,7 @@ class BackProp():
         return activations
 
 
-    def backward(self, X, y, activations):
+    def backward(self, X, y, activations, learning_rate=0.01):
         """
         Backward propagation step of the neural network.
 
@@ -70,58 +74,61 @@ class BackProp():
         m = X.shape[0]
         deltas = {}
         
-        # Calculate difference between actual value and predicted value
+        # Output layer error
         error = activations['a2'] - y
         deltas['d2'] = error * self.sigmoid_derivative(activations['a2'])
         
-        # Propagate the error backward
-        error = np.dot(deltas['d2'], self.weights['w2'].T)
-        deltas['d1'] = error * self.sigmoid_derivative(activations['a1'])
+        # Hidden layer error
+        error_hidden = np.dot(deltas['d2'], self.weights['w2'].T)
+        deltas['d1'] = error_hidden * self.sigmoid_derivative(activations['a1'])
         
         # Update weights and biases
-        self.weights['w2'] -= np.dot(activations['a1'].T, deltas['d2']) / m
-        self.biases['b2'] -= np.sum(deltas['d2'], axis=0, keepdims=True) / m
+        self.weights['w2'] -= learning_rate * np.dot(activations['a1'].T, deltas['d2']) / m
+        self.biases['b2'] -= learning_rate * np.sum(deltas['d2'], axis=0, keepdims=True) / m
         
-        self.weights['w1'] -= np.dot(X.T, deltas['d1']) / m
-        self.biases['b1'] -= np.sum(deltas['d1'], axis=0, keepdims=True) / m
+        self.weights['w1'] -= learning_rate * np.dot(X.T, deltas['d1']) / m
+        self.biases['b1'] -= learning_rate * np.sum(deltas['d1'], axis=0, keepdims=True) / m
+
+    def train_neural_network(self, X, y, epochs=10000, learning_rate=0.01, loss_threshold=0.000001):
+        """
+        Trains the neural network using the given input data and labels.
+
+        Parameters:
+        - X (numpy.ndarray): Input data of shape (num_samples, num_features).
+        - y (numpy.ndarray): Labels of shape (num_samples, num_classes).
+        - epochs (int): Number of training epochs (default: 1000).
+        - learning_rate (float): Learning rate for weight and bias updates (default: 0.01).
+        - loss_threshold (float): Threshold for change in loss between consecutive epochs (default: 0.001).
+
+        Returns:
+        - loss_history (list): List of loss values at each epoch.
+        """
+        loss_history = []
+        prev_loss = float('inf')  # Initialize previous loss with infinity
         
-
-    def train_neural_network(self, X, y, epochs=1000, learning_rate=0.01):
-            """
-            Trains the neural network using the given input data and labels.
-
-            Parameters:
-            - X (numpy.ndarray): Input data of shape (num_samples, num_features).
-            - y (numpy.ndarray): Labels of shape (num_samples, num_classes).
-            - epochs (int): Number of training epochs (default: 1000).
-            - learning_rate (float): Learning rate for weight and bias updates (default: 0.01).
-
-            Returns:
-            - loss_history (list): List of loss values at each epoch.
-            """
-            loss_history = []
+        for epoch in range(epochs):
+            # Forward propagation
+            activations = self.forward(X)
             
-            for epoch in range(epochs):
-                # Forward propagation
-                activations = self.forward(X)
-                
-                # Compute loss
-                loss = self.mean_squared_error(activations['a2'], y)
-                loss_history.append(loss)
-                
-                # Backward propagation and update weights and biases
-                
-                # Update weights and biases with learning rate
-                self.weights['w1'] -= learning_rate * self.weights['w1']
-                self.weights['w2'] -= learning_rate * self.weights['w2']
-                self.biases['b1'] -= learning_rate * self.biases['b1']
-                self.biases['b2'] -= learning_rate * self.biases['b2']
-                
-                # # Print loss every 100 epochs
-                # if epoch % 100 == 0:
-                #     print(f"Epoch {epoch}, Loss: {loss}")
+            # Compute loss
+            loss = self.mean_squared_error(activations['a2'], y)
+            loss_history.append(loss)
+
+            # Break if loss is below the threshold
+            if abs(prev_loss - loss) < loss_threshold:
+                break
+        
             
-            return loss_history
+            # Update weights and biases with learning rate
+            self.backward(X, y, activations, learning_rate=learning_rate)
+            
+            prev_loss = loss
+            
+            # # Print loss every 100 epochs
+            # if epoch % 100 == 0:
+            #     print(f"Epoch {epoch}, Loss: {loss}")
+        
+        return loss_history
 
     def predict(self, X):
         """
@@ -466,14 +473,14 @@ def cross_validation_back_prop(X, y, k=5, hidden_size=15):
 
         # Initialize and train the model
         model = BackProp(X_train.shape[1], hidden_size, 1)
-        model.train_neural_network(X_train, y_train, epochs=200)
+        loss = model.train_neural_network(X_train, y_train, epochs=20000, learning_rate=0.05)
 
         # Predict and calculate mean squared error
         predictions = [model.predict(x) for x in X_val]
         mse = model.mean_squared_error(y_val, predictions)
         mse_scores.append(mse)
 
-    return np.mean(mse_scores), np.var(mse_scores)
+    return np.mean(mse_scores), np.var(mse_scores), len(loss)
 
 
 
@@ -499,9 +506,9 @@ if  __name__ == "__main__":
     hidden_size_choices = [4, 8, 12]
     print("Cross-validation for back_prop")
     for hidden_size in hidden_size_choices:
-        mse, varience = cross_validation_back_prop(X, y, k=5, hidden_size=hidden_size)
+        mse, varience, epochs = cross_validation_back_prop(X, y, k=5, hidden_size=hidden_size)
         #i use the RMSE because it is easeir to interpret
-        print(f"Hidden Size: {hidden_size}, MSE: {mse:.3f}, Variance: {varience:.8f}, RMSE: {np.sqrt(mse):.3f}")
+        print(f"Hidden Size: {hidden_size}, MSE: {mse:.3f}, Variance: {varience:.8f}, RMSE: {np.sqrt(mse):.3f}, epochs taken: {epochs}")
 
 
     #train decision tree model example
@@ -515,6 +522,25 @@ if  __name__ == "__main__":
         accuracy, varience = cross_validation_decision_tree(X, y, k=5, max_depth=max_depth)
         print(f"Max Depth: {max_depth}, Accuracy: {accuracy:.3f}, Variance: {varience:.6f}")
 
+
+
+    # model = BackProp(X.shape[1], 15, 1)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # loss = model.train_neural_network(X_train, y_train, epochs=200, learning_rate=0.01)
+    # y_pred  = model.predict(X_test)
+    # mse = model.mean_squared_error(y_test, y_pred)
+    # print(f"Mean Squared Error for my model: {mse:.3f}")
+    # #model.plot_loss(loss)
+    # print(len(loss))
+
+
+    # #use sklearn back propagation to compare the result, import mse
+
+    # model = MLPRegressor(hidden_layer_sizes=(15,), max_iter=200, learning_rate_init=0.01, random_state=42)
+    # model.fit(X_train, y_train.ravel())
+    # y_pred = model.predict(X_test)
+    # mse = mean_squared_error(y_test, y_pred)
+    # print(f"Mean Squared Error for sklearn model: {mse:.3f}")
 
 
 

@@ -1,0 +1,97 @@
+Solution 1 | start_location: NashvilleTN | max_time: 50 | speed: 80
+1. NashvilleTN to GlasgowKY | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0167, edge_time: 1.24 hours, inter_loc_pref: 0.0055, inter_loc_time: 0.01 hours
+2. GlasgowKY to NashvilleTN | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0540, edge_time: 1.24 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+3. NashvilleTN to CookevilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0736, edge_time: 1.00 hours, inter_loc_pref: 0.6225, inter_loc_time: 1.25 hours
+4. CookevilleTN to KnoxvilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0478, edge_time: 1.27 hours, inter_loc_pref: 0.6084, inter_loc_time: 1.22 hours
+5. KnoxvilleTN to BooneNC | label: BooneNC_tofrom_KnoxvilleTN_on_I81 | edge_pref: 0.0180, edge_time: 2.01 hours, inter_loc_pref: 0.9905, inter_loc_time: 1.98 hours
+6. BooneNC to CharlotteNC | label: BooneNC_tofrom_CharlotteNC_on_US321 | edge_pref: 0.0969, edge_time: 1.26 hours, inter_loc_pref: 0.4339, inter_loc_time: 0.87 hours
+7. CharlotteNC to FayettevilleNC | label: FayettevilleNC_tofrom_CharlotteNC_on_US-74W | edge_pref: 0.0507, edge_time: 1.74 hours, inter_loc_pref: 0.2283, inter_loc_time: 0.46 hours
+8. FayettevilleNC to ColumbiaSC | label: ColumbiaSC_tofrom_FayettevilleNC | edge_pref: 0.0178, edge_time: 2.08 hours, inter_loc_pref: 0.3105, inter_loc_time: 0.62 hours
+9. ColumbiaSC to AthensGA | label: Athens_tofrom_Columbia | edge_pref: 0.0109, edge_time: 2.05 hours, inter_loc_pref: 0.8715, inter_loc_time: 1.74 hours
+10. AthensGA to AtlantaGA | label: Atlanta_tofrom_Athens_on_I85N | edge_pref: 0.0891, edge_time: 0.91 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+11. AtlantaGA to BirminghamAL | label: AtlantaGA_tofrom_BirminghamAL | edge_pref: 0.0342, edge_time: 1.84 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+12. BirminghamAL to TuscaloosaAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0680, edge_time: 0.72 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+13. TuscaloosaAL to ColumbusMS | label: Tuscaloosa_tofrom_ColumbusMS | edge_pref: 0.0928, edge_time: 0.74 hours, inter_loc_pref: 0.9532, inter_loc_time: 1.91 hours
+14. ColumbusMS to TuscaloosaAL | label: Tuscaloosa_tofrom_ColumbusMS | edge_pref: 0.0947, edge_time: 0.74 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+15. TuscaloosaAL to BirminghamAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0061, edge_time: 0.72 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+16. BirminghamAL to MontgomeryAL | label: Montgomery_tofrom_Birmingham_on_I65S | edge_pref: 0.0232, edge_time: 1.12 hours, inter_loc_pref: 0.1819, inter_loc_time: 0.36 hours
+17. MontgomeryAL to AtlantaGA | label: Atlanta_tofrom_Montgomery_on_I85S | edge_pref: 0.0327, edge_time: 2.01 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+18. AtlantaGA to ChattanoogaTN | label: Chattanooga_tofrom_Atlanta_on_I75S | edge_pref: 0.0558, edge_time: 1.48 hours, inter_loc_pref: 0.0765, inter_loc_time: 0.15 hours
+19. ChattanoogaTN to AthensTN | label: Athens_tofrom_Chattanooga | edge_pref: 0.0986, edge_time: 0.72 hours, inter_loc_pref: 0.4515, inter_loc_time: 0.90 hours
+20. AthensTN to NashvilleTN | label: Nashville_tofrom_Athens | edge_pref: 0.0889, edge_time: 2.11 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+start_from: NashvilleTN | total_trip_preference: 10.2041 | total_distance: 2160 miles | total_trip_time: 49.80 hours
+
+Solution 2 | start_location: NashvilleTN | max_time: 50 | speed: 80
+1. NashvilleTN to GlasgowKY | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0167, edge_time: 1.24 hours, inter_loc_pref: 0.0055, inter_loc_time: 0.01 hours
+2. GlasgowKY to NashvilleTN | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0540, edge_time: 1.24 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+3. NashvilleTN to CookevilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0736, edge_time: 1.00 hours, inter_loc_pref: 0.6225, inter_loc_time: 1.25 hours
+4. CookevilleTN to KnoxvilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0478, edge_time: 1.27 hours, inter_loc_pref: 0.6084, inter_loc_time: 1.22 hours
+5. KnoxvilleTN to BooneNC | label: BooneNC_tofrom_KnoxvilleTN_on_I81 | edge_pref: 0.0180, edge_time: 2.01 hours, inter_loc_pref: 0.9905, inter_loc_time: 1.98 hours
+6. BooneNC to CharlotteNC | label: BooneNC_tofrom_CharlotteNC_on_US321 | edge_pref: 0.0969, edge_time: 1.26 hours, inter_loc_pref: 0.4339, inter_loc_time: 0.87 hours
+7. CharlotteNC to FayettevilleNC | label: FayettevilleNC_tofrom_CharlotteNC_on_US-74W | edge_pref: 0.0507, edge_time: 1.74 hours, inter_loc_pref: 0.2283, inter_loc_time: 0.46 hours
+8. FayettevilleNC to ColumbiaSC | label: ColumbiaSC_tofrom_FayettevilleNC | edge_pref: 0.0178, edge_time: 2.08 hours, inter_loc_pref: 0.3105, inter_loc_time: 0.62 hours
+9. ColumbiaSC to AthensGA | label: Athens_tofrom_Columbia | edge_pref: 0.0109, edge_time: 2.05 hours, inter_loc_pref: 0.8715, inter_loc_time: 1.74 hours
+10. AthensGA to AtlantaGA | label: Atlanta_tofrom_Athens_on_I85N | edge_pref: 0.0891, edge_time: 0.91 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+11. AtlantaGA to BirminghamAL | label: AtlantaGA_tofrom_BirminghamAL | edge_pref: 0.0342, edge_time: 1.84 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+12. BirminghamAL to TuscaloosaAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0680, edge_time: 0.72 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+13. TuscaloosaAL to ColumbusMS | label: Tuscaloosa_tofrom_ColumbusMS | edge_pref: 0.0928, edge_time: 0.74 hours, inter_loc_pref: 0.9532, inter_loc_time: 1.91 hours
+14. ColumbusMS to TuscaloosaAL | label: Tuscaloosa_tofrom_ColumbusMS | edge_pref: 0.0947, edge_time: 0.74 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+15. TuscaloosaAL to BirminghamAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0061, edge_time: 0.72 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+16. BirminghamAL to AtlantaGA | label: AtlantaGA_tofrom_BirminghamAL | edge_pref: 0.0010, edge_time: 1.84 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+17. AtlantaGA to ChattanoogaTN | label: Chattanooga_tofrom_Atlanta_on_I75S | edge_pref: 0.0558, edge_time: 1.48 hours, inter_loc_pref: 0.0765, inter_loc_time: 0.15 hours
+18. ChattanoogaTN to AthensTN | label: Athens_tofrom_Chattanooga | edge_pref: 0.0986, edge_time: 0.72 hours, inter_loc_pref: 0.4515, inter_loc_time: 0.90 hours
+19. AthensTN to NashvilleTN | label: Nashville_tofrom_Athens | edge_pref: 0.0889, edge_time: 2.11 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+start_from: NashvilleTN | total_trip_preference: 9.9673 | total_distance: 2056 miles | total_trip_time: 48.14 hours
+
+Solution 3 | start_location: NashvilleTN | max_time: 50 | speed: 80
+1. NashvilleTN to GlasgowKY | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0167, edge_time: 1.24 hours, inter_loc_pref: 0.0055, inter_loc_time: 0.01 hours
+2. GlasgowKY to NashvilleTN | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0540, edge_time: 1.24 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+3. NashvilleTN to CookevilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0736, edge_time: 1.00 hours, inter_loc_pref: 0.6225, inter_loc_time: 1.25 hours
+4. CookevilleTN to KnoxvilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0478, edge_time: 1.27 hours, inter_loc_pref: 0.6084, inter_loc_time: 1.22 hours
+5. KnoxvilleTN to BooneNC | label: BooneNC_tofrom_KnoxvilleTN_on_I81 | edge_pref: 0.0180, edge_time: 2.01 hours, inter_loc_pref: 0.9905, inter_loc_time: 1.98 hours
+6. BooneNC to CharlotteNC | label: BooneNC_tofrom_CharlotteNC_on_US321 | edge_pref: 0.0969, edge_time: 1.26 hours, inter_loc_pref: 0.4339, inter_loc_time: 0.87 hours
+7. CharlotteNC to FayettevilleNC | label: FayettevilleNC_tofrom_CharlotteNC_on_US-74W | edge_pref: 0.0507, edge_time: 1.74 hours, inter_loc_pref: 0.2283, inter_loc_time: 0.46 hours
+8. FayettevilleNC to ColumbiaSC | label: ColumbiaSC_tofrom_FayettevilleNC | edge_pref: 0.0178, edge_time: 2.08 hours, inter_loc_pref: 0.3105, inter_loc_time: 0.62 hours
+9. ColumbiaSC to AthensGA | label: Athens_tofrom_Columbia | edge_pref: 0.0109, edge_time: 2.05 hours, inter_loc_pref: 0.8715, inter_loc_time: 1.74 hours
+10. AthensGA to AtlantaGA | label: Atlanta_tofrom_Athens_on_I85N | edge_pref: 0.0891, edge_time: 0.91 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+11. AtlantaGA to BirminghamAL | label: AtlantaGA_tofrom_BirminghamAL | edge_pref: 0.0342, edge_time: 1.84 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+12. BirminghamAL to TuscaloosaAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0680, edge_time: 0.72 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+13. TuscaloosaAL to BirminghamAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0061, edge_time: 0.72 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+14. BirminghamAL to MontgomeryAL | label: Montgomery_tofrom_Birmingham_on_I65S | edge_pref: 0.0232, edge_time: 1.12 hours, inter_loc_pref: 0.1819, inter_loc_time: 0.36 hours
+15. MontgomeryAL to DothanAL | label: Montgomery_tofrom_Dothan_on_US-231N | edge_pref: 0.0230, edge_time: 1.35 hours, inter_loc_pref: 0.5681, inter_loc_time: 1.14 hours
+16. DothanAL to MontgomeryAL | label: Montgomery_tofrom_Dothan_on_US-231N | edge_pref: 0.0942, edge_time: 1.35 hours, inter_loc_pref: 0.1819, inter_loc_time: 0.36 hours
+17. MontgomeryAL to AtlantaGA | label: Atlanta_tofrom_Montgomery_on_I85S | edge_pref: 0.0327, edge_time: 2.01 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+18. AtlantaGA to ChattanoogaTN | label: Chattanooga_tofrom_Atlanta_on_I75S | edge_pref: 0.0558, edge_time: 1.48 hours, inter_loc_pref: 0.0765, inter_loc_time: 0.15 hours
+19. ChattanoogaTN to AthensTN | label: Athens_tofrom_Chattanooga | edge_pref: 0.0986, edge_time: 0.72 hours, inter_loc_pref: 0.4515, inter_loc_time: 0.90 hours
+20. AthensTN to NashvilleTN | label: Nashville_tofrom_Athens | edge_pref: 0.0889, edge_time: 2.11 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+start_from: NashvilleTN | total_trip_preference: 9.7151 | total_distance: 2258 miles | total_trip_time: 49.92 hours
+
+Solution 4 | start_location: NashvilleTN | max_time: 50 | speed: 80
+1. NashvilleTN to GlasgowKY | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0167, edge_time: 1.24 hours, inter_loc_pref: 0.0055, inter_loc_time: 0.01 hours
+2. GlasgowKY to NashvilleTN | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0540, edge_time: 1.24 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+3. NashvilleTN to CookevilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0736, edge_time: 1.00 hours, inter_loc_pref: 0.6225, inter_loc_time: 1.25 hours
+4. CookevilleTN to KnoxvilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0478, edge_time: 1.27 hours, inter_loc_pref: 0.6084, inter_loc_time: 1.22 hours
+5. KnoxvilleTN to BooneNC | label: BooneNC_tofrom_KnoxvilleTN_on_I81 | edge_pref: 0.0180, edge_time: 2.01 hours, inter_loc_pref: 0.9905, inter_loc_time: 1.98 hours
+6. BooneNC to CharlotteNC | label: BooneNC_tofrom_CharlotteNC_on_US321 | edge_pref: 0.0969, edge_time: 1.26 hours, inter_loc_pref: 0.4339, inter_loc_time: 0.87 hours
+7. CharlotteNC to FayettevilleNC | label: FayettevilleNC_tofrom_CharlotteNC_on_US-74W | edge_pref: 0.0507, edge_time: 1.74 hours, inter_loc_pref: 0.2283, inter_loc_time: 0.46 hours
+8. FayettevilleNC to ColumbiaSC | label: ColumbiaSC_tofrom_FayettevilleNC | edge_pref: 0.0178, edge_time: 2.08 hours, inter_loc_pref: 0.3105, inter_loc_time: 0.62 hours
+9. ColumbiaSC to AthensGA | label: Athens_tofrom_Columbia | edge_pref: 0.0109, edge_time: 2.05 hours, inter_loc_pref: 0.8715, inter_loc_time: 1.74 hours
+10. AthensGA to AtlantaGA | label: Atlanta_tofrom_Athens_on_I85N | edge_pref: 0.0891, edge_time: 0.91 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+11. AtlantaGA to BirminghamAL | label: AtlantaGA_tofrom_BirminghamAL | edge_pref: 0.0342, edge_time: 1.84 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+12. BirminghamAL to TuscaloosaAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0680, edge_time: 0.72 hours, inter_loc_pref: 0.3494, inter_loc_time: 0.70 hours
+13. TuscaloosaAL to BirminghamAL | label: TuscaloosaAL_tofrom_BirminghamAL | edge_pref: 0.0061, edge_time: 0.72 hours, inter_loc_pref: 0.7492, inter_loc_time: 1.50 hours
+14. BirminghamAL to MontgomeryAL | label: Montgomery_tofrom_Birmingham_on_I65S | edge_pref: 0.0232, edge_time: 1.12 hours, inter_loc_pref: 0.1819, inter_loc_time: 0.36 hours
+15. MontgomeryAL to AtlantaGA | label: Atlanta_tofrom_Montgomery_on_I85S | edge_pref: 0.0327, edge_time: 2.01 hours, inter_loc_pref: 0.9618, inter_loc_time: 1.92 hours
+16. AtlantaGA to AthensGA | label: Atlanta_tofrom_Athens_on_I85N | edge_pref: 0.0957, edge_time: 0.91 hours, inter_loc_pref: 0.8715, inter_loc_time: 1.74 hours
+17. AthensGA to ChattanoogaTN | label: Athens_tofrom_Chattanooga_on_I75N | edge_pref: 0.0889, edge_time: 2.20 hours, inter_loc_pref: 0.0765, inter_loc_time: 0.15 hours
+18. ChattanoogaTN to AthensTN | label: Athens_tofrom_Chattanooga | edge_pref: 0.0986, edge_time: 0.72 hours, inter_loc_pref: 0.4515, inter_loc_time: 0.90 hours
+19. AthensTN to NashvilleTN | label: Nashville_tofrom_Athens | edge_pref: 0.0889, edge_time: 2.11 hours, inter_loc_pref: 0.7724, inter_loc_time: 1.54 hours
+start_from: NashvilleTN | total_trip_preference: 9.2966 | total_distance: 2173 miles | total_trip_time: 49.10 hours
+
+
+Summary:
+Total Solutions: 4
+Average Instrumented Runtime: 12.210411548614502 seconds
+Maximum TotalTripPreference: 10.204118001240557
+Average TotalTripPreference: 9.795782525642053
+Minimum TotalTripPreference: 9.296598432917488

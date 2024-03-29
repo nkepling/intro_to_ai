@@ -5,6 +5,9 @@ import time
 import random
 import csv
 
+
+
+
 class Edge:
     def __init__(self, label, location1, location2, distance):
         self.label = label
@@ -12,6 +15,7 @@ class Edge:
         self.location2 = location2
         self.distance = distance
         self.preference = 0  # This will be set using the preference assignment function
+        self.themes = set()
 
     def time_on_edge(self, speed):
         """
@@ -31,6 +35,7 @@ class Location:
         self.latitude = latitude
         self.longitude = longitude
         self.preference = 0  # This will be set using the preference assignment function
+        self.themes = set()
 
     def time_at_location(self):
         """
@@ -55,6 +60,7 @@ class Graph:
     def __init__(self):
         self.locations = {}  # key: location label, value: Location object
         self.edges = {}  # key: (location1, location2), value: Edge object
+        self.edge_labels = {}
 
     def remove_location(self, forbidden_locations):
         """
@@ -97,7 +103,9 @@ class Graph:
             None
         """
         key = (edge.location1.label, edge.location2.label)
+        key2 = edge.label
         self.edges[key] = edge
+        self.edge_labels[key2] = edge
 
     def location_preference_assignments(self, a, b):
         """
@@ -191,6 +199,31 @@ class Graph:
         """
         return ((self.locations[location1].latitude - self.locations[location2].latitude) ** 2 + (
                     self.locations[location1].longitude - self.locations[location2].longitude) ** 2) ** 0.5
+    
+    def read_themes(self, file_name):
+        """Read themes from attractions file
+
+        Args:
+            file_name (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+
+        with open(file_name, newline="") as file:
+            reader = csv.reader(file)
+            next(reader)
+            for row in reader:
+                attraction, label, desc, themes, notes = row
+                themes = set(themes.split(","))
+                if label in self.locations:
+                    self.locations[label].themes = themes
+                elif label in self.edge_labels:
+                    self.edge_labels[label].theme = themes
+                else:
+                    print("So label in graph")
+
+            
 
 
 
@@ -337,7 +370,7 @@ class RoadTrip:
             count += 1
 
 
-def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, results_file, required_locations=None, forbidden_locations=None):
+def RoundTripRoadTrip(startLoc, LocFile, EdgeFile,AttractionFile, maxTime, x_mph, results_file, required_locations=None, forbidden_locations=None):
     """
     Performs a round trip road trip search starting from a given location.
 
@@ -345,6 +378,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, results_file,
         startLoc (str): The starting location for the road trip.
         LocFile (str): The file path to the location data file.
         EdgeFile (str): The file path to the edge data file.
+        AttractionFIle (str): The file path to the attraction (theme) data file.
         maxTime (float): The maximum time allowed for the road trip.
         x_mph (float): The speed in miles per hour.
         results_file (str): The file path to write the results.
@@ -362,7 +396,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile, maxTime, x_mph, results_file,
     graph = Graph()
     graph.read_locations(LocFile)
     graph.read_edges(EdgeFile)
-    
+    graph.read_themes(AttractionFile)
     # Remove forbidden locations from the graph
     if forbidden_locations:
         graph.remove_location(forbidden_locations)
@@ -516,4 +550,4 @@ def user_requirements():
 
 if __name__ == '__main__':
     required_locations, forbidden_locations = user_requirements()
-    RoundTripRoadTrip('NashvilleTN', 'Locations.csv', 'Edges.csv', 50, 80, "results.txt", required_locations, forbidden_locations)
+    RoundTripRoadTrip('NashvilleTN', 'Locations.csv', 'Edges.csv','Attractions.csv', 50, 80, "results.txt", required_locations, forbidden_locations)

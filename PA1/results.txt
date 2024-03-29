@@ -1,26 +1,22 @@
 Solution 1 | start_location: NashvilleTN | max_time: 50 | speed: 80
-1. NashvilleTN to GlasgowKY | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0221, edge_time: 1.24 hours, inter_loc_pref: 0.7674, inter_loc_time: 1.53 hours
-2. GlasgowKY to SomersetKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0772, edge_time: 0.97 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-3. SomersetKY to CampbellsvilleKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0205, edge_time: 0.82 hours, inter_loc_pref: 0.4723, inter_loc_time: 0.94 hours
-4. CampbellsvilleKY to SomersetKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0758, edge_time: 0.82 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-5. SomersetKY to GlasgowKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0817, edge_time: 0.97 hours, inter_loc_pref: 0.7674, inter_loc_time: 1.53 hours
-6. GlasgowKY to SomersetKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0772, edge_time: 0.97 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-7. SomersetKY to CampbellsvilleKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0205, edge_time: 0.82 hours, inter_loc_pref: 0.4723, inter_loc_time: 0.94 hours
-8. CampbellsvilleKY to SomersetKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0758, edge_time: 0.82 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-9. SomersetKY to GlasgowKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0817, edge_time: 0.97 hours, inter_loc_pref: 0.7674, inter_loc_time: 1.53 hours
-10. GlasgowKY to SomersetKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0772, edge_time: 0.97 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-11. SomersetKY to CampbellsvilleKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0205, edge_time: 0.82 hours, inter_loc_pref: 0.4723, inter_loc_time: 0.94 hours
-12. CampbellsvilleKY to SomersetKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0758, edge_time: 0.82 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-13. SomersetKY to CampbellsvilleKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0205, edge_time: 0.82 hours, inter_loc_pref: 0.4723, inter_loc_time: 0.94 hours
-14. CampbellsvilleKY to SomersetKY | label: Campbellsville_tofrom_Somerset_on_KY-70E | edge_pref: 0.0758, edge_time: 0.82 hours, inter_loc_pref: 0.0319, inter_loc_time: 0.06 hours
-15. SomersetKY to GlasgowKY | label: Somerset_tofrom_Glasgow_on_Cumberland Pkwy | edge_pref: 0.0817, edge_time: 0.97 hours, inter_loc_pref: 0.7674, inter_loc_time: 1.53 hours
-16. GlasgowKY to NashvilleTN | label: Glasgow_tofrom_Nashville_on_I-65S | edge_pref: 0.0583, edge_time: 1.24 hours, inter_loc_pref: 0.9995, inter_loc_time: 2.00 hours
-start_from: NashvilleTN | total_trip_preference: 2.9842 | total_distance: 1194 miles | total_trip_time: 27.29 hours
+1. NashvilleTN to BowlingGreenKY | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0043, edge_time: 0.82 hours, inter_loc_pref: 0.2099, inter_loc_time: 0.42 hours
+2. BowlingGreenKY to LouisvilleKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0570, edge_time: 1.46 hours, inter_loc_pref: 0.9648, inter_loc_time: 1.93 hours
+3. LouisvilleKY to CincinnatiOH | label: Cincinnati_tofrom_Lousville | edge_pref: 0.0545, edge_time: 1.25 hours, inter_loc_pref: 0.9218, inter_loc_time: 1.84 hours
+4. CincinnatiOH to HuntingtonWV | label: CincinnatiOH_tofrom_HuntingtonWV_on_KY-9S | edge_pref: 0.0247, edge_time: 1.84 hours, inter_loc_pref: 0.8163, inter_loc_time: 1.63 hours
+5. HuntingtonWV to CharlestonWV | label: CharlestonWV_tofrom_HuntingtonWV | edge_pref: 0.0660, edge_time: 0.66 hours, inter_loc_pref: 0.9487, inter_loc_time: 1.90 hours
+6. CharlestonWV to BlacksburgVA | label: BlacksburgVA_tofrom_CharlestonWV | edge_pref: 0.0923, edge_time: 1.73 hours, inter_loc_pref: 0.1781, inter_loc_time: 0.36 hours
+7. BlacksburgVA to CharlestonWV | label: BlacksburgVA_tofrom_CharlestonWV | edge_pref: 0.0651, edge_time: 1.73 hours, inter_loc_pref: 0.9487, inter_loc_time: 1.90 hours
+8. CharlestonWV to HuntingtonWV | label: CharlestonWV_tofrom_HuntingtonWV | edge_pref: 0.0257, edge_time: 0.66 hours, inter_loc_pref: 0.8163, inter_loc_time: 1.63 hours
+9. HuntingtonWV to LexingtonKY | label: LexingtonKY_tofrom_HuntingtonWV_on_I64E | edge_pref: 0.0552, edge_time: 1.57 hours, inter_loc_pref: 0.4790, inter_loc_time: 0.96 hours
+10. LexingtonKY to KnoxvilleTN | label: Knoxville_tofrom_Lexington | edge_pref: 0.0557, edge_time: 2.12 hours, inter_loc_pref: 0.4569, inter_loc_time: 0.91 hours
+11. KnoxvilleTN to CookevilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0068, edge_time: 1.27 hours, inter_loc_pref: 0.9351, inter_loc_time: 1.87 hours
+12. CookevilleTN to NashvilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0040, edge_time: 1.00 hours, inter_loc_pref: 0.9657, inter_loc_time: 1.93 hours
+start_from: NashvilleTN | total_trip_preference: 7.7405 | total_distance: 1290 miles | total_trip_time: 33.41 hours
 
 
 Summary:
 Total Solutions: 1
-Average Instrumented Runtime: 0.0012369155883789062 seconds
-Maximum TotalTripPreference: 2.9841644878781395
-Average TotalTripPreference: 2.9841644878781395
-Minimum TotalTripPreference: 2.9841644878781395
+Average Instrumented Runtime: 0.0017011165618896484 seconds
+Maximum TotalTripPreference: 7.740513836948259
+Average TotalTripPreference: 7.740513836948259
+Minimum TotalTripPreference: 7.740513836948259

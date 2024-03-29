@@ -1,22 +1,30 @@
 Solution 1 | start_location: NashvilleTN | max_time: 50 | speed: 80
-1. NashvilleTN to BowlingGreenKY | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0043, edge_time: 0.82 hours, inter_loc_pref: 0.2099, inter_loc_time: 0.42 hours
-2. BowlingGreenKY to LouisvilleKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0570, edge_time: 1.46 hours, inter_loc_pref: 0.9648, inter_loc_time: 1.93 hours
-3. LouisvilleKY to CincinnatiOH | label: Cincinnati_tofrom_Lousville | edge_pref: 0.0545, edge_time: 1.25 hours, inter_loc_pref: 0.9218, inter_loc_time: 1.84 hours
-4. CincinnatiOH to HuntingtonWV | label: CincinnatiOH_tofrom_HuntingtonWV_on_KY-9S | edge_pref: 0.0247, edge_time: 1.84 hours, inter_loc_pref: 0.8163, inter_loc_time: 1.63 hours
-5. HuntingtonWV to CharlestonWV | label: CharlestonWV_tofrom_HuntingtonWV | edge_pref: 0.0660, edge_time: 0.66 hours, inter_loc_pref: 0.9487, inter_loc_time: 1.90 hours
-6. CharlestonWV to BlacksburgVA | label: BlacksburgVA_tofrom_CharlestonWV | edge_pref: 0.0923, edge_time: 1.73 hours, inter_loc_pref: 0.1781, inter_loc_time: 0.36 hours
-7. BlacksburgVA to CharlestonWV | label: BlacksburgVA_tofrom_CharlestonWV | edge_pref: 0.0651, edge_time: 1.73 hours, inter_loc_pref: 0.9487, inter_loc_time: 1.90 hours
-8. CharlestonWV to HuntingtonWV | label: CharlestonWV_tofrom_HuntingtonWV | edge_pref: 0.0257, edge_time: 0.66 hours, inter_loc_pref: 0.8163, inter_loc_time: 1.63 hours
-9. HuntingtonWV to LexingtonKY | label: LexingtonKY_tofrom_HuntingtonWV_on_I64E | edge_pref: 0.0552, edge_time: 1.57 hours, inter_loc_pref: 0.4790, inter_loc_time: 0.96 hours
-10. LexingtonKY to KnoxvilleTN | label: Knoxville_tofrom_Lexington | edge_pref: 0.0557, edge_time: 2.12 hours, inter_loc_pref: 0.4569, inter_loc_time: 0.91 hours
-11. KnoxvilleTN to CookevilleTN | label: Cookeville_tofrom_Knoxville | edge_pref: 0.0068, edge_time: 1.27 hours, inter_loc_pref: 0.9351, inter_loc_time: 1.87 hours
-12. CookevilleTN to NashvilleTN | label: Nashville_tofrom_Cookeville_on_I40 | edge_pref: 0.0040, edge_time: 1.00 hours, inter_loc_pref: 0.9657, inter_loc_time: 1.93 hours
-start_from: NashvilleTN | total_trip_preference: 7.7405 | total_distance: 1290 miles | total_trip_time: 33.41 hours
+1. NashvilleTN to BowlingGreenKY | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0004, edge_time: 0.82 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
+2. BowlingGreenKY to LouisvilleKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0217, edge_time: 1.46 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+3. LouisvilleKY to IndianapolisIN | label: Indianapolis_tofrom_Louisville | edge_pref: 0.0519, edge_time: 1.43 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+4. IndianapolisIN to ColumbusOH | label: Indianapolis_tofrom_Columbus | edge_pref: 0.0867, edge_time: 2.20 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+5. ColumbusOH to PittsburghPA | label: ColumbusOH_tofrom_PittsburghPA_on_I70E | edge_pref: 0.0906, edge_time: 2.31 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+6. PittsburghPA to ColumbusOH | label: ColumbusOH_tofrom_PittsburghPA_on_I70E | edge_pref: 0.0911, edge_time: 2.31 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+7. ColumbusOH to DetroitMI | label: DetroitMI_tofrom_ColumbusOH_on_I75S | edge_pref: 0.0693, edge_time: 2.49 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+8. DetroitMI to LansingMI | label: DetroitMI_tofrom_LansingMI | edge_pref: 0.0235, edge_time: 1.18 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+9. LansingMI to AnnArborMI | label: LansingMI_tofrom_AnnArborMI | edge_pref: 0.0314, edge_time: 0.81 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+10. AnnArborMI to FortWayneIN | label: FortWayneIN_tofrom_AnnArborMI | edge_pref: 0.0823, edge_time: 1.77 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+11. FortWayneIN to DetroitMI | label: FortWayneIN_tofrom_DetroitMI | edge_pref: 0.0860, edge_time: 2.02 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+12. DetroitMI to LansingMI | label: DetroitMI_tofrom_LansingMI | edge_pref: 0.0235, edge_time: 1.18 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+13. LansingMI to DetroitMI | label: DetroitMI_tofrom_LansingMI | edge_pref: 0.0538, edge_time: 1.18 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+14. DetroitMI to ColumbusOH | label: DetroitMI_tofrom_ColumbusOH_on_I75S | edge_pref: 0.0913, edge_time: 2.49 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+15. ColumbusOH to PittsburghPA | label: ColumbusOH_tofrom_PittsburghPA_on_I70E | edge_pref: 0.0906, edge_time: 2.31 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+16. PittsburghPA to FairmontWV | label: FairmontWV_tofrom_PittsburghPA_on_I79N | edge_pref: 0.0431, edge_time: 1.14 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
+17. FairmontWV to HuntingtonWV | label: HuntingtonWV_tofrom_FairmontWV_on_I64E_and_I79N | edge_pref: 0.0058, edge_time: 2.39 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
+18. HuntingtonWV to LouisvilleKY | label: LouisvilleKY_tofrom_HuntingtonWV_on_I64E | edge_pref: 0.0617, edge_time: 2.46 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+19. LouisvilleKY to BowlingGreenKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0439, edge_time: 1.46 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
+20. BowlingGreenKY to NashvilleTN | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0249, edge_time: 0.82 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+start_from: NashvilleTN | total_trip_preference: 5.5043 | total_distance: 2741 miles | total_trip_time: 49.96 hours
 
 
 Summary:
 Total Solutions: 1
-Average Instrumented Runtime: 0.0017011165618896484 seconds
-Maximum TotalTripPreference: 7.740513836948259
-Average TotalTripPreference: 7.740513836948259
-Minimum TotalTripPreference: 7.740513836948259
+Average Instrumented Runtime: 0.03195524215698242 seconds
+Maximum TotalTripPreference: 5.5042945965537395
+Average TotalTripPreference: 5.5042945965537395
+Minimum TotalTripPreference: 5.5042945965537395

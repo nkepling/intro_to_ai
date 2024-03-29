@@ -6,8 +6,7 @@ import random
 import random
 import csv
 
-class decision_tree():
-    class Node:
+class Node:
         """
         Represents a node in a decision tree.
 
@@ -48,71 +47,32 @@ class decision_tree():
             """
             return self.value is not None
         
-    def __init__(self):
-        """
-        Initializes the class object.
-        """
-        self.tree = None
+class HandCraftedTree1:
+    def __init__(self) -> None:
+        leaf_node1  = Node(value = 0.99)
+        leaf_node2 = Node(value = 0.8)
+        leaf_node3 = Node(value=0.8)
+        leaf_node4 = Node(value = 0.25)
+        leaf_node5 = Node(value = 0.25)
+        leaf_node6 = Node(value = 0.25)
+        leaf_node7 = Node(value = 0)
+        music_node = Node(feature={"Music"},left = leaf_node6,right=leaf_node7)
+        park_node = Node(feature={"Parks"},left = leaf_node5,right=music_node)
+        kids_node = Node(feature={"Kids"},left = leaf_node4,right=park_node)
+        kids_music_node = Node(feature={"Kids","Music"},left = leaf_node3,right=kids_node)
+        kids_park_node = Node(feature={"Kids","Parks"},left = leaf_node2,right= kids_music_node)
+        self.root_node = Node(feature={"Kids","Parks","Music"},left = leaf_node1,right=kids_park_node)
 
-    def build_tree(self, X, y, split, depth=0, max_depth=4):
-            """
-            Builds a decision tree recursively using the given dataset.
-
-            Parameters:
-            - X: numpy array, shape (n_samples, n_features)
-                The input features of the dataset.
-            - y: numpy array, shape (n_samples,)
-                The target labels of the dataset.
-            - depth: int, optional (default=0)
-                The current depth of the tree.
-            - max_depth: int, optional (default=4)
-                The maximum depth of the tree.
-
-            Returns:
-            - Node object
-                The root node of the decision tree.
-            """
-            n_samples, n_features = X.shape
-            num_labels = len(np.unique(y))
-            
-            # stopping criteria
-            if depth >= max_depth or n_samples < 2 or num_labels == 1:
-                leaf_value = np.argmax(np.bincount(y))
-                return self.Node(value=leaf_value)
-            
-            # feature, threshold = self.calculate_best_split(X, y)
-            if split == 'entropy':
-                feature, threshold = self.calculate_best_split_entropy(X, y)
+    def predict(self,themes):
+        n  = self.root_node
+        while not n.is_leaf_node():
+            if themes == n.feature:
+                n = n.left
             else: 
-                feature, threshold = self.calculate_best_split(X, y)
-            if feature is None:
-                leaf_value = np.argmax(np.bincount(y))
-                return self.Node(value=leaf_value)
-            
-            left_idx = np.where(X[:, feature] < threshold)
-            right_idx = np.where(X[:, feature] >= threshold)
-            left = self.build_tree(X[left_idx], y[left_idx], depth + 1, max_depth)
-            right = self.build_tree(X[right_idx], y[right_idx], depth + 1, max_depth)
-            return self.Node(feature, threshold, left, right)
+                n = n.right
+        return n.value
 
-    def predict(self, sample):
-            """
-            Predicts the class label for a given sample using the decision tree.
-
-            Parameters:
-            sample (list): The feature values of the sample.
-
-            Returns:
-            int: The predicted class label.
-            """
-            current_node = self.tree
-            while not current_node.is_leaf_node():
-                if sample[current_node.feature] < current_node.threshold:
-                    current_node = current_node.left
-                else:
-                    current_node = current_node.right
-            return current_node.value
-
+        
 
 class Edge:
     def __init__(self, label, location1, location2, distance):
@@ -213,7 +173,7 @@ class Graph:
         self.edges[key] = edge
         self.edge_labels[key2] = edge
 
-    def location_preference_assignments(self, a, b):
+    def location_preference_assignments(self, tree=HandCraftedTree1):
         """
         Assigns random preference values to each location in the graph.
 
@@ -224,8 +184,11 @@ class Graph:
         Returns:
             None
         """
+        T = tree()
         for location in self.locations.values():
-            location.preference = random.uniform(a, b)
+            location.preference = T.predict(location.themes)
+
+
 
     def edge_preference_assignments(self, a, b):
         """
@@ -486,7 +449,17 @@ class RoadTrip:
             count += 1
 
 
-def RoundTripRoadTrip(startLoc, LocFile, EdgeFile,AttractionFile,themes_list, maxTime, x_mph, results_file, required_locations=None, forbidden_locations=None):
+def RoundTripRoadTrip(startLoc, 
+                      LocFile, 
+                      EdgeFile,
+                      AttractionFile,
+                      themes_list,
+                      decision_tree, 
+                      maxTime, 
+                      x_mph, 
+                      results_file, 
+                      required_locations=None, 
+                      forbidden_locations=None):
     """
     Performs a round trip road trip search starting from a given location.
 
@@ -519,7 +492,7 @@ def RoundTripRoadTrip(startLoc, LocFile, EdgeFile,AttractionFile,themes_list, ma
         graph.remove_location(forbidden_locations)
 
     # Assign preferences to locations and edges
-    graph.location_preference_assignments(0, 1)
+    graph.location_preference_assignments(decision_tree)
     graph.edge_preference_assignments(0, 0.1)
 
     current_road_trip = RoadTrip(startLoc)
@@ -668,4 +641,5 @@ def user_requirements():
 if __name__ == '__main__':
     required_locations, forbidden_locations = user_requirements()
     themes_list = ['Kids','Music','Parks']
-    RoundTripRoadTrip('NashvilleTN', 'Locations.csv', 'Edges.csv','Attractions.csv',themes_list, 50, 80, "results.txt", required_locations, forbidden_locations)
+    RoundTripRoadTrip('NashvilleTN', 'Locations.csv', 'Edges.csv','Attractions.csv',themes_list, HandCraftedTree1,50, 80, "results.txt", required_locations, forbidden_locations)
+    # T = HandCraftedTree1()

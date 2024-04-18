@@ -2,9 +2,9 @@ import copy
 import sys
 import time
 import random
-
-import random
 import csv
+from openai import OpenAI
+import pprint
 
 class Node:
         """
@@ -535,8 +535,8 @@ def RoundTripRoadTrip(startLoc,
                         continue
                     f = open(results_file, "a")
 
-                    #current_road_trip.print_edges(x_mph, graph, results_file, maxTime, count)
-                    print(Give_Narrative(current_road_trip))
+                    current_road_trip.print_edges(x_mph, graph, results_file, maxTime, count)
+                    # print(current_road_trip)
                     f.close()
                     solutions.append(current_road_trip)
 
@@ -574,6 +574,10 @@ def RoundTripRoadTrip(startLoc,
                         print(f"Average TotalTripPreference: {average_preference}")
                         print(f"Minimum TotalTripPreference: {min_preference}")
 
+                        # Give LLM generated narrative
+                        narrative = Give_Narrative(current_road_trip)
+                        print(narrative)
+
                         # Print summary to screen and write to the file
                         with open(results_file, 'a') as f:
                             sys.stdout = f  # Redirect standard output to the file
@@ -584,6 +588,7 @@ def RoundTripRoadTrip(startLoc,
                             print(f"Maximum TotalTripPreference: {max_preference}")
                             print(f"Average TotalTripPreference: {average_preference}")
                             print(f"Minimum TotalTripPreference: {min_preference}")
+                            print(f"\nNarrative: {narrative}")
 
                         # Reset standard output to the console
                         sys.stdout = sys.__stdout__
@@ -642,6 +647,22 @@ def user_requirements():
 
 
 
+
+def call_llm(narrative):
+    
+    client = OpenAI()
+    try:
+        completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a travel agent, skilled in describing pcotential roadtrips."},
+            {"role": "user", "content": f"{narrative}"}
+        ]
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        TimeoutError("OpenAI API call failed. Please try again later.")
+
 #Generate a narrative prompt for the road trip object. 
 def Give_Narrative(road_trip: RoadTrip):
     
@@ -660,7 +681,9 @@ def Give_Narrative(road_trip: RoadTrip):
         narrative += f"\n\nLeg {i}: Journey from {location1} to {location2} takes about {distance:.2f} miles."
         if theme:
             narrative += f" Along the way, you explore attractions like {', '.join(theme)}."   
-    return narrative
+
+    return call_llm(narrative)
+
 
 
 if __name__ == '__main__':

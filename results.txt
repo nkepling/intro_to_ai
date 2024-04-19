@@ -1,38 +1,27 @@
 Solution 1 | start_location: NashvilleTN | max_time: 20 | speed: 80
-1. NashvilleTN to BowlingGreenKY | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0193, edge_time: 0.82 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
-2. BowlingGreenKY to LouisvilleKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0684, edge_time: 1.46 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
-3. LouisvilleKY to HuntingtonWV | label: LouisvilleKY_tofrom_HuntingtonWV_on_I64E | edge_pref: 0.0442, edge_time: 2.46 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
-4. HuntingtonWV to FairmontWV | label: HuntingtonWV_tofrom_FairmontWV_on_I64E_and_I79N | edge_pref: 0.0950, edge_time: 2.39 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
-5. FairmontWV to HuntingtonWV | label: HuntingtonWV_tofrom_FairmontWV_on_I64E_and_I79N | edge_pref: 0.0299, edge_time: 2.39 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
-6. HuntingtonWV to LouisvilleKY | label: LouisvilleKY_tofrom_HuntingtonWV_on_I64E | edge_pref: 0.0217, edge_time: 2.46 hours, inter_loc_pref: 0.0000, inter_loc_time: 0.00 hours
-7. LouisvilleKY to BowlingGreenKY | label: Louisville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0736, edge_time: 1.46 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
-8. BowlingGreenKY to NashvilleTN | label: Nashville_tofrom_BowlingGreen_on_I65 | edge_pref: 0.0965, edge_time: 0.82 hours, inter_loc_pref: 0.9900, inter_loc_time: 1.98 hours
-start_from: NashvilleTN | total_trip_preference: 2.8385 | total_distance: 1142 miles | total_trip_time: 19.86 hours
+1. NashvilleTN to AlbanyKY | label: NashvilleTN_tofrom_AlbanyKY | edge_pref: 0.0070, edge_time: 1.64 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+2. AlbanyKY to SpartaTN | label: SpartaTN_tofrom_AlbanyKY | edge_pref: 0.0929, edge_time: 0.84 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+3. SpartaTN to AlbanyKY | label: SpartaTN_tofrom_AlbanyKY | edge_pref: 0.0114, edge_time: 0.84 hours, inter_loc_pref: 0.2500, inter_loc_time: 0.50 hours
+4. AlbanyKY to SpartaTN | label: SpartaTN_tofrom_AlbanyKY | edge_pref: 0.0929, edge_time: 0.84 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+5. SpartaTN to NashvilleTN | label: NashvilleTN_tofrom_SpartaTN | edge_pref: 0.0373, edge_time: 1.09 hours, inter_loc_pref: 0.8000, inter_loc_time: 1.60 hours
+start_from: NashvilleTN | total_trip_preference: 2.2271 | total_distance: 419 miles | total_trip_time: 11.04 hours
 
 
 Summary:
 Total Solutions: 1
-Average Instrumented Runtime: 0.03254389762878418 seconds
-Maximum TotalTripPreference: 2.8384940940250796
-Average TotalTripPreference: 2.8384940940250796
-Minimum TotalTripPreference: 2.8384940940250796
+Average Instrumented Runtime: 0.0007269382476806641 seconds
+Maximum TotalTripPreference: 2.2271246734137016
+Average TotalTripPreference: 2.2271246734137016
+Minimum TotalTripPreference: 2.2271246734137016
 
-Narrative: Welcome to an exciting road trip starting from the vibrant city of Nashville, TN! Buckle up as we embark on a memorable journey across various cities and landscapes filled with rich history and diverse attractions.
+Narrative: Embark on an unforgettable road trip starting from the vibrant city of Nashville, TN. As you hit the road, the anticipation of the adventures ahead fills the air. The first leg takes you on a scenic drive to Albany, KY, spanning 131 miles. Along the way, immerse yourself in the picturesque landscapes of rolling hills and charming small towns. Don't miss a visit to the beautiful Dale Hollow Lake State Resort Park for some relaxation by the water.
 
-Leg 1: Departing from Nashville, TN, our first stop is Bowling Green, KY. Along the 66-mile journey, you can visit the iconic National Corvette Museum and take a tour of the caves at Mammoth Cave National Park.
+Next, your journey leads you to Sparta, TN, a quaint town that is steeped in history and charm, just 67 miles away. Explore the historic sites, such as the Rock Island State Park, where you can marvel at cascading waterfalls and ancient rock formations.
 
-Leg 2: From Bowling Green, KY, we continue our adventure towards Louisville, KY, covering 117 miles. In Louisville, be sure to visit the historic Churchill Downs, home of the Kentucky Derby, and explore the vibrant downtown area with its eclectic mix of dining and entertainment options.
+As you travel back to Albany, KY, take the time to enjoy the serene countryside dotted with farms and fields. Consider stopping by the National Corvette Museum in Bowling Green for a peek into the world of classic cars.
 
-Leg 3: Our next leg takes us from Louisville, KY, to Huntington, WV, spanning 197 miles. Huntington offers a blend of outdoor activities along the Ohio River and cultural attractions like the Heritage Farm Museum and Village.
+The road beckons once more as you head back to Sparta, TN, for the penultimate leg of the trip. Let the mesmerizing views of the Cumberland Plateau captivate your senses, and perhaps indulge in some outdoor activities like hiking or fishing at Burgess Falls State Park.
 
-Leg 4: Moving on from Huntington, WV, our journey leads us to Fairmont, WV, a 191-mile drive. Explore the scenic landscapes of Fairmont, including Prickett's Fort State Park and the Marion County Historical Society.
+As you make your way back to Nashville, TN, the final leg of the journey awaits, spanning 87 miles. Reflect on the memories made, the sights seen, and the miles traveled as you return to the bustling city life, enriched by the experiences of the road trip.
 
-Leg 5: As we backtrack from Fairmont, WV, to Huntington, WV, enjoy the picturesque drive through the Appalachian Mountains and take in the quaint small towns that dot the route.
-
-Leg 6: Returning to Huntington, our road trip now heads back towards Louisville, KY, covering 197 miles. Consider stopping at the Ashland Estate in Ashland, KY, on the way for a glimpse into Kentucky's history.
-
-Leg 7: Continuing our journey, we make our way from Louisville, KY, to Bowling Green, KY, a 117-mile stretch. Don't miss out on exploring the Kentucky Bourbon Trail and sampling some of the finest bourbon in the region.
-
-Leg 8: Finally, as we head back to where it all began, Nashville, TN, covering the last 66 miles, reminisce about the memories made and the diverse experiences encountered on this epic road trip.
-
-Throughout this road trip, you'll witness a variety of landscapes, from rolling hills to riverside views, and immerse yourself in the rich history and culture of each destination. So, pack your bags, hit the road, and get ready for an unforgettable journey filled with adventure and exploration!
+This road trip promises a perfect blend of nature, history, and culture, offering a diverse tapestry of experiences that will leave you with lasting memories. So buckle up, hit the road, and let the adventure unfold before you.

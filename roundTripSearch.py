@@ -5,6 +5,7 @@ import random
 import csv
 from openai import OpenAI
 import pprint
+import os
 
 class Node:
         """
@@ -650,7 +651,7 @@ def user_requirements():
 
 def call_llm(narrative):
     
-    client = OpenAI()
+    client = OpenAI(api_key = os.environ.get("OPENAI_API_KEY"))
     try:
         completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -681,7 +682,7 @@ def Give_Narrative(road_trip: RoadTrip):
         narrative += f"\n\nLeg {i}: Journey from {location1} to {location2} takes about {distance:.2f} miles."
         if theme:
             narrative += f" Along the way, you explore attractions like {', '.join(theme)}."   
-
+    
     return call_llm(narrative)
 
 
